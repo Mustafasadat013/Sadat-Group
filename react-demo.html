@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadat Group - React Components Demo</title>
+    <link rel="stylesheet" href="enhanced-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .demo-section {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .demo-section h2 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .demo-section h2 i {
+            color: var(--primary-color);
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .component-card {
+            background: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            transition: all var(--transition-normal);
+        }
+
+        .component-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .component-card h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .component-card p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .demo-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+            margin-right: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .demo-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .demo-btn.secondary {
+            background: var(--surface-color);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .demo-btn.secondary:hover {
+            background: var(--background-color);
+        }
+
+        .back-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .back-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xs);
+            padding-left: var(--spacing-sm);
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: var(--success-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .code-example {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: var(--spacing-md);
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            margin-top: var(--spacing-sm);
+            overflow-x: auto;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+
+        .tech-badge {
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .tech-badge.secondary {
+            background: var(--surface-color);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <button class="back-btn" onclick="window.location.href='index.html'">
+            <i class="fas fa-arrow-left"></i> Back to Startup Screen
+        </button>
+
+        <h1 style="color: var(--text-primary); margin-bottom: var(--spacing-lg);">
+            <i class="fab fa-react"></i> React Components Demo
+        </h1>
+
+        <!-- React Overview -->
+        <section class="demo-section">
+            <h2><i class="fas fa-info-circle"></i> React Version Overview</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Modern React Dashboard</h3>
+                    <p>A complete React-based dashboard with TypeScript, featuring modern UI components and real-time data visualization.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">React 18</span>
+                        <span class="tech-badge">TypeScript</span>
+                        <span class="tech-badge">Tailwind CSS</span>
+                        <span class="tech-badge">Chart.js</span>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Component Architecture</h3>
+                    <p>Well-structured components with TypeScript interfaces, reusable design patterns, and clean separation of concerns.</p>
+                    <ul class="feature-list">
+                        <li>Modular component design</li>
+                        <li>TypeScript interfaces</li>
+                        <li>Props validation</li>
+                        <li>Reusable patterns</li>
+                    </ul>
+                </div>
+
+                <div class="component-card">
+                    <h3>Business-Focused Features</h3>
+                    <p>Tailored specifically for Sadat Group business units with relevant metrics, charts, and management tools.</p>
+                    <ul class="feature-list">
+                        <li>Revenue tracking</li>
+                        <li>Client management</li>
+                        <li>Investment portfolio</li>
+                        <li>Property management</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Components Showcase -->
+        <section class="demo-section">
+            <h2><i class="fas fa-cubes"></i> Component Showcase</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Sidebar Component</h3>
+                    <p>Navigation sidebar with business unit links, user profile, and settings access.</p>
+                    <div class="code-example">
+// Sidebar.tsx
+&lt;Sidebar /&gt;
+                    </div>
+                    <button class="demo-btn" onclick="showComponentCode('sidebar')">View Code</button>
+                </div>
+
+                <div class="component-card">
+                    <h3>StatCard Component</h3>
+                    <p>Reusable statistics cards with trend indicators and customizable colors.</p>
+                    <div class="code-example">
+// StatCard.tsx
+&lt;StatCard 
+  title="Revenue" 
+  value="$284,500" 
+  change="+12%" 
+/&gt;
+                    </div>
+                    <button class="demo-btn" onclick="showComponentCode('statcard')">View Code</button>
+                </div>
+
+                <div class="component-card">
+                    <h3>Chart Component</h3>
+                    <p>Interactive charts using Chart.js for data visualization and business insights.</p>
+                    <div class="code-example">
+// Chart.tsx
+&lt;RevenueChart /&gt;
+&lt;ClientsChart /&gt;
+&lt;BusinessUnitsChart /&gt;
+                    </div>
+                    <button class="demo-btn" onclick="showComponentCode('chart')">View Code</button>
+                </div>
+
+                <div class="component-card">
+                    <h3>Dashboard Page</h3>
+                    <p>Main dashboard page combining all components with responsive layout and business metrics.</p>
+                    <div class="code-example">
+// Dashboard.tsx
+&lt;Dashboard /&gt;
+                    </div>
+                    <button class="demo-btn" onclick="showComponentCode('dashboard')">View Code</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Setup Instructions -->
+        <section class="demo-section">
+            <h2><i class="fas fa-rocket"></i> Setup Instructions</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Installation</h3>
+                    <p>Install all required dependencies for the React version.</p>
+                    <div class="code-example">
+npm install
+                    </div>
+                    <button class="demo-btn" onclick="runCommand('npm install')">Run Command</button>
+                </div>
+
+                <div class="component-card">
+                    <h3>Start Development Server</h3>
+                    <p>Start the Vite development server for React development.</p>
+                    <div class="code-example">
+npm run react:dev
+                    </div>
+                    <button class="demo-btn" onclick="runCommand('npm run react:dev')">Run Command</button>
+                </div>
+
+                <div class="component-card">
+                    <h3>Build for Production</h3>
+                    <p>Build the React application for production deployment.</p>
+                    <div class="code-example">
+npm run react:build
+                    </div>
+                    <button class="demo-btn" onclick="runCommand('npm run react:build')">Run Command</button>
+                </div>
+
+                <div class="component-card">
+                    <h3>Preview Production Build</h3>
+                    <p>Preview the production build locally before deployment.</p>
+                    <div class="code-example">
+npm run react:preview
+                    </div>
+                    <button class="demo-btn" onclick="runCommand('npm run react:preview')">Run Command</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Comparison -->
+        <section class="demo-section">
+            <h2><i class="fas fa-balance-scale"></i> Features Comparison</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>HTML/CSS Version</h3>
+                    <p>Original static HTML version with vanilla JavaScript.</p>
+                    <ul class="feature-list">
+                        <li>Static HTML pages</li>
+                        <li>Vanilla JavaScript</li>
+                        <li>CSS animations</li>
+                        <li>Windows 11 startup screen</li>
+                        <li>Simple deployment</li>
+                    </ul>
+                    <button class="demo-btn secondary" onclick="window.location.href='index.html'">View HTML Version</button>
+                </div>
+
+                <div class="component-card">
+                    <h3>React Version</h3>
+                    <p>Modern React application with TypeScript and advanced features.</p>
+                    <ul class="feature-list">
+                        <li>Component-based architecture</li>
+                        <li>TypeScript support</li>
+                        <li>Interactive charts</li>
+                        <li>Responsive design</li>
+                        <li>Modern build system</li>
+                        <li>Hot module replacement</li>
+                    </ul>
+                    <button class="demo-btn" onclick="startReactDev()">Start React Version</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- File Structure -->
+        <section class="demo-section">
+            <h2><i class="fas fa-folder-tree"></i> Project Structure</h2>
+            <div class="component-card">
+                <h3>React Project Structure</h3>
+                <div class="code-example">
+src/
+├── components/
+│   ├── Sidebar.tsx          # Navigation sidebar
+│   ├── StatCard.tsx         # Statistics cards
+│   └── Chart.tsx           # Chart components
+├── pages/
+│   └── Dashboard.tsx       # Main dashboard page
+├── main.tsx               # React entry point
+└── index.css              # Global styles
+
+Configuration Files:
+├── package.json           # Dependencies & scripts
+├── vite.config.ts         # Vite configuration
+├── tailwind.config.js     # Tailwind CSS config
+├── tsconfig.json          # TypeScript config
+└── postcss.config.js      # PostCSS config
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="theme-system.js"></script>
+    <script>
+        // Initialize theme system
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof themeSystem !== 'undefined') {
+                themeSystem.init();
+            }
+        });
+
+        // Demo functions
+        function showComponentCode(component) {
+            const codes = {
+                sidebar: 'src/components/Sidebar.tsx',
+                statcard: 'src/components/StatCard.tsx',
+                chart: 'src/components/Chart.tsx',
+                dashboard: 'src/pages/Dashboard.tsx'
+            };
+            
+            alert(`View the code in: ${codes[component]}`);
+        }
+
+        function runCommand(command) {
+            alert(`Run this command in your terminal:\n\n${command}`);
+        }
+
+        function startReactDev() {
+            alert('Starting React development server...\n\nThis will open the React version on port 3001.\n\nMake sure you have run "npm install" first!');
+            
+            // You could actually run the command here if needed
+            // For now, just show instructions
+        }
+    </script>
+</body>
+</html>

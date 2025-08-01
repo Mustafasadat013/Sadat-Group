@@ -1,38 +1,55 @@
 {
-    "name": "sadat-group-business-management",
-    "version": "1.0.0",
-    "description": "Comprehensive multi-business management platform for Sadat Group",
-    "main": "index.html",
-    "scripts": {
-        "start": "live-server --port=3000 --open=/index.html",
-        "dev": "live-server --port=3000 --open=/index.html --watch",
-        "serve": "live-server --port=5500 --open=/index.html",
-        "build": "echo 'No build process required for static HTML/CSS/JS'",
-        "test": "echo 'No tests specified'",
-        "lint": "echo 'No linting configured'"
-    },
-    "keywords": [
-        "business-management",
-        "dashboard",
-        "sadat-group",
-        "multi-business",
-        "windows11",
-        "glassmorphism"
-    ],
-    "author": "Sadat Group",
-    "license": "MIT",
-    "devDependencies": {
-        "live-server": "^1.2.2"
-    },
-    "engines": {
-        "node": ">=18.0.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/your-username/sadat-group-business-management.git"
-    },
-    "bugs": {
-        "url": "https://github.com/your-username/sadat-group-business-management/issues"
-    },
-    "homepage": "https://github.com/your-username/sadat-group-business-management#readme"
+  "name": "sadat-group-business-management",
+  "version": "1.0.0",
+  "description": "Sadat Group Business Management System - Centralized platform for managing all business units",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server --port=3000 --open=/",
+    "dev": "live-server --port=3000 --open=/",
+    "build": "echo 'Build process would go here'",
+    "test": "echo 'Test process would go here'",
+    "react:dev": "vite",
+    "react:build": "vite build",
+    "react:preview": "vite preview"
+  },
+  "keywords": [
+    "business-management",
+    "dashboard",
+    "sadat-group",
+    "react",
+    "typescript",
+    "tailwind"
+  ],
+  "author": "Sayed Mustafa Sadat",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "lucide-react": "^0.294.0",
+    "chart.js": "^4.4.0",
+    "react-chartjs-2": "^5.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sadat-group/business-management-system"
+  },
+  "bugs": {
+    "url": "https://github.com/sadat-group/business-management-system/issues"
+  },
+  "homepage": "https://github.com/sadat-group/business-management-system#readme"
 }
