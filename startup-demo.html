@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadat Group - Startup Screen Demo</title>
+    <link rel="stylesheet" href="enhanced-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .demo-section {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .demo-section h2 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .demo-section h2 i {
+            color: var(--primary-color);
+        }
+
+        .customization-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .customization-card {
+            background: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            transition: all var(--transition-normal);
+        }
+
+        .customization-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .customization-card h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .customization-card p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .demo-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+            margin-right: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .demo-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .demo-btn.secondary {
+            background: var(--surface-color);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .demo-btn.secondary:hover {
+            background: var(--background-color);
+        }
+
+        .back-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .back-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xs);
+            padding-left: var(--spacing-sm);
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: var(--success-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .code-example {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: var(--spacing-md);
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            margin-top: var(--spacing-sm);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <button class="back-btn" onclick="window.location.href='index.html'">
+            <i class="fas fa-arrow-left"></i> Back to Startup Screen
+        </button>
+
+        <h1 style="color: var(--text-primary); margin-bottom: var(--spacing-lg);">
+            <i class="fas fa-cog"></i> Startup Screen Customization Demo
+        </h1>
+
+        <!-- Features Overview -->
+        <section class="demo-section">
+            <h2><i class="fas fa-star"></i> Windows 11-Style Features</h2>
+            <div class="customization-grid">
+                <div class="customization-card">
+                    <h3>Live Clock & Date</h3>
+                    <p>Real-time clock and date display with automatic updates</p>
+                    <ul class="feature-list">
+                        <li>Live time updates every second</li>
+                        <li>Formatted date display</li>
+                        <li>Responsive typography</li>
+                        <li>Text shadow effects</li>
+                    </ul>
+                </div>
+
+                <div class="customization-card">
+                    <h3>Calendar Events</h3>
+                    <p>Dynamic calendar events with glassmorphism design</p>
+                    <ul class="feature-list">
+                        <li>Random event selection</li>
+                        <li>Configurable probability</li>
+                        <li>Glassmorphism styling</li>
+                        <li>Icon integration</li>
+                    </ul>
+                </div>
+
+                <div class="customization-card">
+                    <h3>Welcome Message</h3>
+                    <p>Personalized greeting with business quote</p>
+                    <ul class="feature-list">
+                        <li>Customizable welcome text</li>
+                        <li>Business quote display</li>
+                        <li>Animated icon</li>
+                        <li>Responsive sizing</li>
+                    </ul>
+                </div>
+
+                <div class="customization-card">
+                    <h3>Status Indicators</h3>
+                    <p>Real-time status updates with live counters</p>
+                    <ul class="feature-list">
+                        <li>Email count updates</li>
+                        <li>Notification counters</li>
+                        <li>System status display</li>
+                        <li>Hover animations</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customization Options -->
+        <section class="demo-section">
+            <h2><i class="fas fa-palette"></i> Customization Options</h2>
+            <div class="customization-grid">
+                <div class="customization-card">
+                    <h3>Background Image</h3>
+                    <p>Change the background image to match your branding</p>
+                    <button class="demo-btn" onclick="demoBackgroundChange()">Change Background</button>
+                    <button class="demo-btn secondary" onclick="demoResetBackground()">Reset</button>
+                    <div class="code-example">
+// Set custom background
+StartupConfig.methods.setBackground('/images/sadat-group-hq.jpg');
+                    </div>
+                </div>
+
+                <div class="customization-card">
+                    <h3>Welcome Message</h3>
+                    <p>Personalize the welcome message for different users</p>
+                    <button class="demo-btn" onclick="demoWelcomeMessage()">Change Message</button>
+                    <button class="demo-btn secondary" onclick="demoResetWelcome()">Reset</button>
+                    <div class="code-example">
+// Set custom welcome message
+StartupConfig.methods.setWelcomeMessage('Hello, Sayed Mustafa Sadat');
+                    </div>
+                </div>
+
+                <div class="customization-card">
+                    <h3>Business Quote</h3>
+                    <p>Update the business quote or slogan</p>
+                    <button class="demo-btn" onclick="demoBusinessQuote()">Change Quote</button>
+                    <button class="demo-btn secondary" onclick="demoResetQuote()">Reset</button>
+                    <div class="code-example">
+// Set custom business quote
+StartupConfig.methods.setBusinessQuote('Excellence in every business endeavor');
+                    </div>
+                </div>
+
+                <div class="customization-card">
+                    <h3>Calendar Event</h3>
+                    <p>Set specific calendar events or hide them</p>
+                    <button class="demo-btn" onclick="demoCalendarEvent()">Set Event</button>
+                    <button class="demo-btn secondary" onclick="demoHideEvent()">Hide Event</button>
+                    <div class="code-example">
+// Set custom calendar event
+StartupConfig.methods.setCalendarEvent('Meeting with Luxe Team – 3:00 PM');
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Features -->
+        <section class="demo-section">
+            <h2><i class="fas fa-mouse-pointer"></i> Interactive Features</h2>
+            <div class="customization-grid">
+                <div class="customization-card">
+                    <h3>Click/Tap to Continue</h3>
+                    <p>Multiple interaction methods to proceed to login</p>
+                    <ul class="feature-list">
+                        <li>Mouse click anywhere</li>
+                        <li>Touch tap on mobile</li>
+                        <li>Any keyboard key</li>
+                        <li>Smooth transition animation</li>
+                    </ul>
+                </div>
+
+                <div class="customization-card">
+                    <h3>Smooth Animations</h3>
+                    <p>Windows 11-style animations and transitions</p>
+                    <ul class="feature-list">
+                        <li>Background fade-in effect</li>
+                        <li>Content slide animations</li>
+                        <li>Loading progress bar</li>
+                        <li>Hover effects</li>
+                    </ul>
+                </div>
+
+                <div class="customization-card">
+                    <h3>Welcome Chime</h3>
+                    <p>Optional audio feedback for enhanced experience</p>
+                    <ul class="feature-list">
+                        <li>Configurable volume</li>
+                        <li>Delayed playback</li>
+                        <li>Graceful fallback</li>
+                        <li>User interaction required</li>
+                    </ul>
+                </div>
+
+                <div class="customization-card">
+                    <h3>Responsive Design</h3>
+                    <p>Perfect display on all device sizes</p>
+                    <ul class="feature-list">
+                        <li>Mobile optimization</li>
+                        <li>Tablet compatibility</li>
+                        <li>Desktop enhancement</li>
+                        <li>High contrast support</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Configuration Guide -->
+        <section class="demo-section">
+            <h2><i class="fas fa-book"></i> Configuration Guide</h2>
+            <div class="customization-card">
+                <h3>Quick Setup</h3>
+                <p>Easy customization through the configuration file</p>
+                <div class="code-example">
+// Edit startup-config.js to customize:
+
+// Change background image
+background: {
+    image: '/images/your-custom-image.jpg'
+}
+
+// Update welcome message
+welcome: {
+    message: 'Hello, [Your Name]',
+    quote: 'Your business slogan here'
+}
+
+// Modify calendar events
+calendar: {
+    events: ['Your custom events here'],
+    showProbability: 0.8
+}
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="theme-system.js"></script>
+    <script src="startup-config.js"></script>
+    <script>
+        // Initialize theme system
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof themeSystem !== 'undefined') {
+                themeSystem.init();
+            }
+        });
+
+        // Demo functions
+        function demoBackgroundChange() {
+            if (window.StartupConfig) {
+                StartupConfig.methods.setBackground('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiB2aWV3Qm94PSIwIDAgMTkyMCAxMDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNmZjYwMDA7c3RvcC1vcGFjaXR5OjEiIC8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6I2ZmMDAwMDtzdG9wLW9wYWNpdHk6MSIgLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiBmaWxsPSJ1cmwoI2dyYWRpZW50KSIvPgo8L3N2Zz4=');
+                alert('Background changed to red gradient!');
+            }
+        }
+
+        function demoResetBackground() {
+            if (window.StartupConfig) {
+                StartupConfig.methods.setBackground(StartupConfig.background.image);
+                alert('Background reset to default!');
+            }
+        }
+
+        function demoWelcomeMessage() {
+            if (window.StartupConfig) {
+                StartupConfig.methods.setWelcomeMessage('Hello, Demo User');
+                alert('Welcome message changed!');
+            }
+        }
+
+        function demoResetWelcome() {
+            if (window.StartupConfig) {
+                StartupConfig.methods.setWelcomeMessage('Hello, Sayed Mustafa Sadat');
+                alert('Welcome message reset!');
+            }
+        }
+
+        function demoBusinessQuote() {
+            if (window.StartupConfig) {
+                StartupConfig.methods.setBusinessQuote('Innovation drives success');
+                alert('Business quote changed!');
+            }
+        }
+
+        function demoResetQuote() {
+            if (window.StartupConfig) {
+                StartupConfig.methods.setBusinessQuote('Excellence in every business endeavor');
+                alert('Business quote reset!');
+            }
+        }
+
+        function demoCalendarEvent() {
+            if (window.StartupConfig) {
+                StartupConfig.methods.setCalendarEvent('Demo Meeting – 2:00 PM');
+                alert('Calendar event set!');
+            }
+        }
+
+        function demoHideEvent() {
+            if (window.StartupConfig) {
+                StartupConfig.methods.setCalendarEvent(null);
+                alert('Calendar event hidden!');
+            }
+        }
+    </script>
+</body>
+</html>
