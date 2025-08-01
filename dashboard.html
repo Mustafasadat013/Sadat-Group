@@ -6,6 +6,7 @@
     <title>Sadat Group - Dashboard</title>
     <link rel="stylesheet" href="dashboard-styles.css">
     <link rel="stylesheet" href="enhanced-styles.css">
+    <link rel="stylesheet" href="ai-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -101,6 +102,31 @@
                             <span class="widget-change negative">+5</span>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- AI Insights Dashboard -->
+            <section class="ai-insights">
+                <h3><i class="fas fa-brain"></i> AI-Powered Insights</h3>
+                <div class="insights-grid" id="aiInsights">
+                    <!-- AI insights will be populated here -->
+                </div>
+            </section>
+
+            <!-- AI Recommendations -->
+            <section class="ai-recommendations">
+                <div class="recommendations-header">
+                    <h3>AI Recommendations</h3>
+                    <div class="recommendation-filters">
+                        <button class="recommendation-filter active" data-filter="all">All</button>
+                        <button class="recommendation-filter" data-filter="business">Business</button>
+                        <button class="recommendation-filter" data-filter="operational">Operational</button>
+                        <button class="recommendation-filter" data-filter="financial">Financial</button>
+                        <button class="recommendation-filter" data-filter="strategic">Strategic</button>
+                    </div>
+                </div>
+                <div class="recommendations-grid" id="aiRecommendations">
+                    <!-- AI recommendations will be populated here -->
                 </div>
             </section>
 
@@ -288,6 +314,10 @@
                 <span>Settings</span>
             </div>
             <div class="dropdown-divider"></div>
+            <div class="dropdown-item" onclick="window.location.href='advanced-features.html'">
+                <i class="fas fa-rocket"></i>
+                <span>Advanced Features Demo</span>
+            </div>
             <div class="dropdown-item" onclick="logout()">
                 <i class="fas fa-sign-out-alt"></i>
                 <span>Logout</span>
@@ -342,6 +372,9 @@
     <script src="auth.js"></script>
     <script src="theme-system.js"></script>
     <script src="analytics.js"></script>
+    <script src="ai-analytics.js"></script>
+    <script src="workflow-automation.js"></script>
+    <script src="integration-hub.js"></script>
     <script src="dashboard.js"></script>
 </body>
 </html>

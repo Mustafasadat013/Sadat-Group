@@ -1,0 +1,732 @@
+/* AI-Powered Features and Advanced UI Components */
+
+/* AI Chatbot Styles */
+.ai-chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    height: 500px;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform var(--transition-normal);
+    overflow: hidden;
+}
+
+.ai-chatbot.active {
+    transform: translateY(0);
+}
+
+.chatbot-header {
+    background: var(--primary-color);
+    color: white;
+    padding: var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.chatbot-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.chatbot-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+}
+
+.chatbot-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.chatbot-body {
+    height: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+}
+
+.chatbot-messages {
+    flex: 1;
+    padding: var(--spacing-md);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.chatbot-message {
+    display: flex;
+    margin-bottom: var(--spacing-sm);
+}
+
+.chatbot-message.user {
+    justify-content: flex-end;
+}
+
+.chatbot-message.bot {
+    justify-content: flex-start;
+}
+
+.message-content {
+    max-width: 80%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-lg);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.chatbot-message.user .message-content {
+    background: var(--primary-color);
+    color: white;
+    border-bottom-right-radius: var(--radius-sm);
+}
+
+.chatbot-message.bot .message-content {
+    background: var(--background-color);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-bottom-left-radius: var(--radius-sm);
+}
+
+.message-time {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: var(--spacing-xs);
+    text-align: center;
+}
+
+.chatbot-input {
+    padding: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.chatbot-input input {
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--surface-color);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.chatbot-input input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.1);
+}
+
+.chatbot-input button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.chatbot-input button:hover {
+    background: var(--secondary-color);
+}
+
+/* AI Insights Dashboard */
+.ai-insights {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.ai-insights h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.ai-insights h3 i {
+    color: var(--primary-color);
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.insight-card {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    transition: all var(--transition-normal);
+}
+
+.insight-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.insight-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.insight-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.insight-icon.revenue {
+    background: rgba(76, 175, 80, 0.1);
+    color: var(--success-color);
+}
+
+.insight-icon.customer {
+    background: rgba(33, 150, 243, 0.1);
+    color: var(--info-color);
+}
+
+.insight-icon.inventory {
+    background: rgba(255, 152, 0, 0.1);
+    color: var(--warning-color);
+}
+
+.insight-icon.fraud {
+    background: rgba(244, 67, 54, 0.1);
+    color: var(--error-color);
+}
+
+.insight-content h4 {
+    color: var(--text-primary);
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.insight-content p {
+    color: var(--text-secondary);
+    margin: 0 0 var(--spacing-sm) 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.insight-confidence {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* AI Recommendations */
+.ai-recommendations {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.recommendations-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.recommendations-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.recommendation-filters {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.recommendation-filter {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.recommendation-filter.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.recommendation-card {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    transition: all var(--transition-normal);
+}
+
+.recommendation-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.recommendation-type {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-sm);
+}
+
+.recommendation-type.business {
+    background: rgba(76, 175, 80, 0.1);
+    color: var(--success-color);
+}
+
+.recommendation-type.operational {
+    background: rgba(33, 150, 243, 0.1);
+    color: var(--info-color);
+}
+
+.recommendation-type.financial {
+    background: rgba(255, 152, 0, 0.1);
+    color: var(--warning-color);
+}
+
+.recommendation-type.strategic {
+    background: rgba(156, 39, 176, 0.1);
+    color: #9c27b0;
+}
+
+.recommendation-title {
+    color: var(--text-primary);
+    margin: 0 0 var(--spacing-sm) 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.recommendation-description {
+    color: var(--text-secondary);
+    margin: 0 0 var(--spacing-sm) 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.recommendation-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.recommendation-action {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.recommendation-action:hover {
+    background: var(--secondary-color);
+}
+
+.recommendation-action.secondary {
+    background: var(--surface-color);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.recommendation-action.secondary:hover {
+    background: var(--background-color);
+}
+
+/* AI Analytics Dashboard */
+.ai-analytics {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.analytics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.analytics-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.analytics-controls {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.analytics-control {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.analytics-control.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.analytics-card {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+}
+
+.analytics-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.analytics-card-title {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.analytics-card-value {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: var(--spacing-sm) 0;
+}
+
+.analytics-card-change {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.9rem;
+}
+
+.analytics-card-change.positive {
+    color: var(--success-color);
+}
+
+.analytics-card-change.negative {
+    color: var(--error-color);
+}
+
+.analytics-chart {
+    height: 200px;
+    background: var(--surface-color);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: var(--spacing-md);
+}
+
+/* AI Workflow Automation */
+.ai-workflow {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.workflow-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.workflow-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.workflow-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.workflow-action {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.workflow-action:hover {
+    background: var(--secondary-color);
+}
+
+.workflow-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.workflow-item {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    transition: all var(--transition-normal);
+}
+
+.workflow-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.workflow-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.workflow-item-title {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.workflow-item-status {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.workflow-item-status.running {
+    background: rgba(33, 150, 243, 0.1);
+    color: var(--info-color);
+}
+
+.workflow-item-status.completed {
+    background: rgba(76, 175, 80, 0.1);
+    color: var(--success-color);
+}
+
+.workflow-item-status.failed {
+    background: rgba(244, 67, 54, 0.1);
+    color: var(--error-color);
+}
+
+.workflow-item-description {
+    color: var(--text-secondary);
+    margin: 0 0 var(--spacing-sm) 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.workflow-item-progress {
+    background: var(--surface-color);
+    border-radius: var(--radius-sm);
+    height: 8px;
+    overflow: hidden;
+    margin-bottom: var(--spacing-sm);
+}
+
+.workflow-item-progress-bar {
+    height: 100%;
+    background: var(--primary-color);
+    transition: width var(--transition-normal);
+}
+
+.workflow-item-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.workflow-step {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 0.8rem;
+}
+
+.workflow-step-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+}
+
+.workflow-step-icon.completed {
+    background: var(--success-color);
+    color: white;
+}
+
+.workflow-step-icon.running {
+    background: var(--info-color);
+    color: white;
+    animation: pulse 2s infinite;
+}
+
+.workflow-step-icon.pending {
+    background: var(--text-muted);
+    color: white;
+}
+
+.workflow-step-icon.failed {
+    background: var(--error-color);
+    color: white;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .ai-chatbot {
+        width: calc(100vw - 40px);
+        height: 60vh;
+        right: 20px;
+        left: 20px;
+    }
+
+    .insights-grid,
+    .recommendations-grid,
+    .analytics-grid,
+    .workflow-list {
+        grid-template-columns: 1fr;
+    }
+
+    .analytics-header,
+    .recommendations-header,
+    .workflow-header {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        align-items: flex-start;
+    }
+
+    .analytics-controls,
+    .recommendation-filters,
+    .workflow-actions {
+        flex-wrap: wrap;
+    }
+}
+
+/* Dark Mode Enhancements */
+[data-theme="dark"] .ai-chatbot {
+    background: var(--surface-color);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .chatbot-message.bot .message-content {
+    background: var(--surface-color);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .insight-card,
+[data-theme="dark"] .recommendation-card,
+[data-theme="dark"] .analytics-card,
+[data-theme="dark"] .workflow-item {
+    background: var(--surface-color);
+    border-color: var(--border-color);
+}
+
+/* High Contrast Mode */
+[data-theme="highContrast"] .ai-chatbot {
+    border: 2px solid var(--border-color);
+}
+
+[data-theme="highContrast"] .insight-card,
+[data-theme="highContrast"] .recommendation-card,
+[data-theme="highContrast"] .analytics-card,
+[data-theme="highContrast"] .workflow-item {
+    border: 2px solid var(--border-color);
+}
+
+[data-theme="highContrast"] .chatbot-message.user .message-content,
+[data-theme="highContrast"] .recommendation-action,
+[data-theme="highContrast"] .workflow-action {
+    border: 2px solid var(--primary-color);
+}

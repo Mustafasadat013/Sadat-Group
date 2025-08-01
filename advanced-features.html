@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadat Group - Advanced Features Demo</title>
+    <link rel="stylesheet" href="enhanced-styles.css">
+    <link rel="stylesheet" href="ai-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .demo-section {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .demo-section h2 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .demo-section h2 i {
+            color: var(--primary-color);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .feature-card {
+            background: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            transition: all var(--transition-normal);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            background: rgba(0, 120, 212, 0.1);
+            color: var(--primary-color);
+        }
+
+        .feature-title {
+            color: var(--text-primary);
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            margin: 0 0 var(--spacing-sm) 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .feature-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .demo-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+        }
+
+        .demo-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .demo-btn.secondary {
+            background: var(--surface-color);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .demo-btn.secondary:hover {
+            background: var(--background-color);
+        }
+
+        .demo-output {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: var(--spacing-md);
+            margin-top: var(--spacing-sm);
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .back-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .back-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: var(--spacing-xs);
+        }
+
+        .status-indicator.active {
+            background: var(--success-color);
+        }
+
+        .status-indicator.inactive {
+            background: var(--text-muted);
+        }
+
+        .integration-status {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .integration-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .workflow-status {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .workflow-progress {
+            flex: 1;
+            background: var(--surface-color);
+            border-radius: var(--radius-sm);
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .workflow-progress-bar {
+            height: 100%;
+            background: var(--primary-color);
+            transition: width var(--transition-normal);
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <button class="back-btn" onclick="window.location.href='dashboard.html'">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </button>
+
+        <h1 style="color: var(--text-primary); margin-bottom: var(--spacing-lg);">
+            <i class="fas fa-rocket"></i> Advanced Features Demo
+        </h1>
+
+        <!-- AI Analytics Demo -->
+        <section class="demo-section">
+            <h2><i class="fas fa-brain"></i> AI Analytics & Machine Learning</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="feature-title">Revenue Prediction</h3>
+                    </div>
+                    <p class="feature-description">
+                        AI-powered revenue forecasting using machine learning models with historical data analysis.
+                    </p>
+                    <div class="feature-actions">
+                        <button class="demo-btn" onclick="demoRevenuePrediction()">Run Prediction</button>
+                        <button class="demo-btn secondary" onclick="showPredictionDetails()">Details</button>
+                    </div>
+                    <div id="revenueOutput" class="demo-output" style="display: none;"></div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="feature-title">Customer Churn Analysis</h3>
+                    </div>
+                    <p class="feature-description">
+                        Predictive analysis to identify customers at risk of churning with prevention strategies.
+                    </p>
+                    <div class="feature-actions">
+                        <button class="demo-btn" onclick="demoChurnAnalysis()">Analyze</button>
+                        <button class="demo-btn secondary" onclick="showChurnDetails()">Details</button>
+                    </div>
+                    <div id="churnOutput" class="demo-output" style="display: none;"></div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <h3 class="feature-title">Inventory Optimization</h3>
+                    </div>
+                    <p class="feature-description">
+                        AI-driven inventory management with optimal stock levels and reorder recommendations.
+                    </p>
+                    <div class="feature-actions">
+                        <button class="demo-btn" onclick="demoInventoryOptimization()">Optimize</button>
+                        <button class="demo-btn secondary" onclick="showInventoryDetails()">Details</button>
+                    </div>
+                    <div id="inventoryOutput" class="demo-output" style="display: none;"></div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Fraud Detection</h3>
+                    </div>
+                    <p class="feature-description">
+                        Real-time fraud detection using machine learning to identify suspicious transactions.
+                    </p>
+                    <div class="feature-actions">
+                        <button class="demo-btn" onclick="demoFraudDetection()">Scan</button>
+                        <button class="demo-btn secondary" onclick="showFraudDetails()">Details</button>
+                    </div>
+                    <div id="fraudOutput" class="demo-output" style="display: none;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow Automation Demo -->
+        <section class="demo-section">
+            <h2><i class="fas fa-cogs"></i> Workflow Automation</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3 class="feature-title">Customer Onboarding</h3>
+                    </div>
+                    <p class="feature-description">
+                        Automated customer onboarding workflow with document verification and account setup.
+                    </p>
+                    <div class="feature-actions">
+                        <button class="demo-btn" onclick="demoCustomerOnboarding()">Start Workflow</button>
+                        <button class="demo-btn secondary" onclick="showOnboardingDetails()">Details</button>
+                    </div>
+                    <div id="onboardingOutput" class="demo-output" style="display: none;"></div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <h3 class="feature-title">Invoice Processing</h3>
+                    </div>
+                    <p class="feature-description">
+                        Automated invoice processing with AI data extraction and approval workflows.
+                    </p>
+                    <div class="feature-actions">
+                        <button class="demo-btn" onclick="demoInvoiceProcessing()">Process Invoice</button>
+                        <button class="demo-btn secondary" onclick="showInvoiceDetails()">Details</button>
+                    </div>
+                    <div id="invoiceOutput" class="demo-output" style="display: none;"></div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-warehouse"></i>
+                        </div>
+                        <h3 class="feature-title">Inventory Management</h3>
+                    </div>
+                    <p class="feature-description">
+                        Automated inventory tracking with reorder triggers and supplier selection.
+                    </p>
+                    <div class="feature-actions">
+                        <button class="demo-btn" onclick="demoInventoryManagement()">Manage Inventory</button>
+                        <button class="demo-btn secondary" onclick="showInventoryManagementDetails()">Details</button>
+                    </div>
+                    <div id="inventoryManagementOutput" class="demo-output" style="display: none;"></div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3 class="feature-title">Employee Onboarding</h3>
+                    </div>
+                    <p class="feature-description">
+                        Streamlined employee onboarding with IT setup and access provisioning.
+                    </p>
+                    <div class="feature-actions">
+                        <button class="demo-btn" onclick="demoEmployeeOnboarding()">Start Onboarding</button>
+                        <button class="demo-btn secondary" onclick="showEmployeeDetails()">Details</button>
+                    </div>
+                    <div id="employeeOutput" class="demo-output" style="display: none;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integration Hub Demo -->
+        <section class="demo-section">
+            <h2><i class="fas fa-plug"></i> Enterprise Integrations</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3 class="feature-title">Accounting Integrations</h3>
+                    </div>
+                    <p class="feature-description">
+                        Seamless integration with QuickBooks, Xero, and other accounting platforms.
+                    </p>
+                    <div class="integration-status">
+                        <span class="status-indicator active"></span>
+                        <span class="integration-name">QuickBooks</span>
+                        <span style="color: var(--success-color);">Connected</span>
+                    </div>
+                    <div class="integration-status">
+                        <span class="status-indicator active"></span>
+                        <span class="integration-name">Xero</span>
+                        <span style="color: var(--success-color);">Connected</span>
+                    </div>
+                    <div class="feature-actions">
+                        <button class="demo-btn" onclick="demoAccountingSync()">Sync Data</button>
+                        <button class="demo-btn secondary" onclick="showAccountingDetails()">Details</button>
+                    </div>
+                    <div id="accountingOutput" class="demo-output" style="display: none;"></div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="feature-title">CRM Integrations</h3>
+                    </div>
+                    <p class="feature-description">
+                        Connect with Salesforce, HubSpot, and other CRM platforms for customer data sync.
+                    </p>
+                    <div class="integration-status">
+                        <span class="status-indicator active"></span>
+                        <span class="integration-name">Salesforce</span>
+                        <span style="color: var(--success-color);">Connected</span>
+                    </div>
+                    <div class="integration-status">
+                        <span class="status-indicator active"></span>
+                        <span class="integration-name">HubSpot</span>
+                        <span style="color: var(--success-color);">Connected</span>
+                    </div>
+                    <div class="feature-actions">
+                        <button class="demo-btn" onclick="demoCRMSync()">Sync Data</button>
+                        <button class="demo-btn secondary" onclick="showCRMDetails()">Details</button>
+                    </div>
+                    <div id="crmOutput" class="demo-output" style="display: none;"></div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3 class="feature-title">Payment Processing</h3>
+                    </div>
+                    <p class="feature-description">
+                        Integrated payment processing with Stripe, PayPal, and other payment gateways.
+                    </p>
+                    <div class="integration-status">
+                        <span class="status-indicator active"></span>
+                        <span class="integration-name">Stripe</span>
+                        <span style="color: var(--success-color);">Connected</span>
+                    </div>
+                    <div class="integration-status">
+                        <span class="status-indicator active"></span>
+                        <span class="integration-name">PayPal</span>
+                        <span style="color: var(--success-color);">Connected</span>
+                    </div>
+                    <div class="feature-actions">
+                        <button class="demo-btn" onclick="demoPaymentProcessing()">Process Payment</button>
+                        <button class="demo-btn secondary" onclick="showPaymentDetails()">Details</button>
+                    </div>
+                    <div id="paymentOutput" class="demo-output" style="display: none;"></div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="feature-title">Communication Platforms</h3>
+                    </div>
+                    <p class="feature-description">
+                        Automated marketing and messaging with Mailchimp, Twilio, and other platforms.
+                    </p>
+                    <div class="integration-status">
+                        <span class="status-indicator active"></span>
+                        <span class="integration-name">Mailchimp</span>
+                        <span style="color: var(--success-color);">Connected</span>
+                    </div>
+                    <div class="integration-status">
+                        <span class="status-indicator active"></span>
+                        <span class="integration-name">Twilio</span>
+                        <span style="color: var(--success-color);">Connected</span>
+                    </div>
+                    <div class="feature-actions">
+                        <button class="demo-btn" onclick="demoCommunication()">Send Campaign</button>
+                        <button class="demo-btn secondary" onclick="showCommunicationDetails()">Details</button>
+                    </div>
+                    <div id="communicationOutput" class="demo-output" style="display: none;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Chatbot Demo -->
+        <section class="demo-section">
+            <h2><i class="fas fa-comments"></i> AI Chatbot</h2>
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="feature-title">Business Intelligence Assistant</h3>
+                </div>
+                <p class="feature-description">
+                    Ask questions about your business data, get insights, and receive AI-powered recommendations.
+                </p>
+                <div class="feature-actions">
+                    <button class="demo-btn" onclick="toggleChatbot()">Open Chatbot</button>
+                    <button class="demo-btn secondary" onclick="demoChatbotQueries()">Sample Queries</button>
+                </div>
+                <div id="chatbotOutput" class="demo-output" style="display: none;"></div>
+            </div>
+        </section>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="theme-system.js"></script>
+    <script src="analytics.js"></script>
+    <script src="ai-analytics.js"></script>
+    <script src="workflow-automation.js"></script>
+    <script src="integration-hub.js"></script>
+    <script>
+        // Initialize systems
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize theme system
+            if (typeof themeSystem !== 'undefined') {
+                themeSystem.init();
+            }
+        });
+
+        // AI Analytics Demos
+        async function demoRevenuePrediction() {
+            const output = document.getElementById('revenueOutput');
+            output.style.display = 'block';
+            output.innerHTML = 'Running revenue prediction...\n';
+            
+            try {
+                const historicalData = generateMockHistoricalData();
+                const prediction = await aiAnalytics.predictRevenue(historicalData, 12);
+                
+                output.innerHTML += `✅ Prediction completed!\n\n`;
+                output.innerHTML += `📊 Revenue Forecast (Next 12 Months):\n`;
+                prediction.predictions.forEach((value, index) => {
+                    const month = new Date();
+                    month.setMonth(month.getMonth() + index + 1);
+                    output.innerHTML += `${month.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}: $${(value * 1000000).toLocaleString()}\n`;
+                });
+                output.innerHTML += `\n🎯 Confidence Level: ${prediction.confidence}%\n`;
+                output.innerHTML += `📈 Key Factors: ${prediction.factors.join(', ')}\n`;
+            } catch (error) {
+                output.innerHTML += `❌ Error: ${error.message}\n`;
+            }
+        }
+
+        async function demoChurnAnalysis() {
+            const output = document.getElementById('churnOutput');
+            output.style.display = 'block';
+            output.innerHTML = 'Analyzing customer churn risk...\n';
+            
+            try {
+                const customerData = generateMockCustomerData();
+                const analysis = await aiAnalytics.predictCustomerChurn(customerData);
+                
+                output.innerHTML += `✅ Analysis completed!\n\n`;
+                output.innerHTML += `🔴 High Risk Customers: ${analysis.highRisk.length}\n`;
+                output.innerHTML += `🟡 Medium Risk Customers: ${analysis.mediumRisk.length}\n`;
+                output.innerHTML += `🟢 Low Risk Customers: ${analysis.lowRisk.length}\n\n`;
+                output.innerHTML += `💡 Recommendations:\n`;
+                analysis.recommendations.forEach(rec => {
+                    output.innerHTML += `• ${rec}\n`;
+                });
+            } catch (error) {
+                output.innerHTML += `❌ Error: ${error.message}\n`;
+            }
+        }
+
+        async function demoInventoryOptimization() {
+            const output = document.getElementById('inventoryOutput');
+            output.style.display = 'block';
+            output.innerHTML = 'Optimizing inventory levels...\n';
+            
+            try {
+                const inventoryData = generateMockInventoryData();
+                const salesHistory = generateMockSalesHistory();
+                const optimization = await aiAnalytics.optimizeInventory(inventoryData, salesHistory);
+                
+                output.innerHTML += `✅ Optimization completed!\n\n`;
+                output.innerHTML += `📦 Recommended Stock Levels:\n`;
+                optimization.recommendedLevels.forEach((level, index) => {
+                    output.innerHTML += `Product ${index + 1}: ${level} units\n`;
+                });
+                output.innerHTML += `\n💰 Estimated Cost Savings: $${optimization.costSavings.toLocaleString()}\n`;
+                output.innerHTML += `⚠️ Stockout Risk: ${optimization.riskAssessment}%\n`;
+            } catch (error) {
+                output.innerHTML += `❌ Error: ${error.message}\n`;
+            }
+        }
+
+        async function demoFraudDetection() {
+            const output = document.getElementById('fraudOutput');
+            output.style.display = 'block';
+            output.innerHTML = 'Scanning for fraudulent transactions...\n';
+            
+            try {
+                const transactionData = generateMockTransactionData();
+                const detection = await aiAnalytics.detectFraud(transactionData);
+                
+                output.innerHTML += `✅ Fraud detection completed!\n\n`;
+                output.innerHTML += `🚨 Suspicious Transactions: ${detection.suspiciousTransactions.length}\n`;
+                output.innerHTML += `⚠️ Overall Risk Level: ${detection.riskLevel}\n\n`;
+                output.innerHTML += `📋 Alerts:\n`;
+                detection.alerts.forEach(alert => {
+                    output.innerHTML += `• ${alert.risk} Risk - ${alert.recommendation}\n`;
+                });
+            } catch (error) {
+                output.innerHTML += `❌ Error: ${error.message}\n`;
+            }
+        }
+
+        // Workflow Automation Demos
+        async function demoCustomerOnboarding() {
+            const output = document.getElementById('onboardingOutput');
+            output.style.display = 'block';
+            output.innerHTML = 'Starting customer onboarding workflow...\n';
+            
+            try {
+                const workflowData = {
+                    customerId: 'CUST_' + Date.now(),
+                    name: 'John Doe',
+                    email: 'john.doe@example.com',
+                    phone: '+1234567890',
+                    businessType: 'retail'
+                };
+                
+                const instance = await workflowAutomation.engine.startWorkflow('customerOnboarding', workflowData);
+                
+                output.innerHTML += `✅ Workflow started!\n\n`;
+                output.innerHTML += `🆔 Instance ID: ${instance.id}\n`;
+                output.innerHTML += `📋 Steps: ${instance.steps.length}\n`;
+                output.innerHTML += `⏱️ Started: ${instance.startTime.toLocaleString()}\n\n`;
+                
+                // Simulate workflow progress
+                setTimeout(() => {
+                    output.innerHTML += `📝 Step 1: Data Collection - Completed\n`;
+                    output.innerHTML += `✅ Step 2: Document Verification - Completed\n`;
+                    output.innerHTML += `⚙️ Step 3: Account Setup - In Progress...\n`;
+                }, 1000);
+                
+                setTimeout(() => {
+                    output.innerHTML += `✅ Step 3: Account Setup - Completed\n`;
+                    output.innerHTML += `📧 Step 4: Welcome Communication - Completed\n`;
+                    output.innerHTML += `🎯 Step 5: Initial Training - Scheduled\n`;
+                    output.innerHTML += `\n🎉 Customer onboarding workflow completed successfully!\n`;
+                }, 3000);
+                
+            } catch (error) {
+                output.innerHTML += `❌ Error: ${error.message}\n`;
+            }
+        }
+
+        async function demoInvoiceProcessing() {
+            const output = document.getElementById('invoiceOutput');
+            output.style.display = 'block';
+            output.innerHTML = 'Processing invoice...\n';
+            
+            try {
+                const invoiceData = {
+                    file: { name: 'invoice_001.pdf' },
+                    amount: 1500.00,
+                    vendor: 'Sample Vendor'
+                };
+                
+                output.innerHTML += `📄 Invoice uploaded: ${invoiceData.file.name}\n`;
+                output.innerHTML += `💰 Amount: $${invoiceData.amount.toLocaleString()}\n`;
+                output.innerHTML += `🏢 Vendor: ${invoiceData.vendor}\n\n`;
+                
+                // Simulate processing steps
+                setTimeout(() => {
+                    output.innerHTML += `🔍 Step 1: Data Extraction - Completed\n`;
+                    output.innerHTML += `📊 Extracted data: Vendor, Amount, Due Date\n`;
+                }, 1000);
+                
+                setTimeout(() => {
+                    output.innerHTML += `✅ Step 2: Approval Workflow - Auto-approved\n`;
+                    output.innerHTML += `💳 Step 3: Payment Processing - Completed\n`;
+                }, 2000);
+                
+                setTimeout(() => {
+                    output.innerHTML += `📧 Step 4: Confirmation - Sent\n`;
+                    output.innerHTML += `\n🎉 Invoice processed successfully!\n`;
+                }, 3000);
+                
+            } catch (error) {
+                output.innerHTML += `❌ Error: ${error.message}\n`;
+            }
+        }
+
+        // Integration Demos
+        async function demoAccountingSync() {
+            const output = document.getElementById('accountingOutput');
+            output.style.display = 'block';
+            output.innerHTML = 'Syncing with accounting systems...\n';
+            
+            try {
+                output.innerHTML += `📊 QuickBooks: Syncing invoices...\n`;
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                output.innerHTML += `✅ QuickBooks: 15 invoices synced\n`;
+                
+                output.innerHTML += `📊 Xero: Syncing payments...\n`;
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                output.innerHTML += `✅ Xero: 8 payments synced\n`;
+                
+                output.innerHTML += `\n🎉 Accounting sync completed successfully!\n`;
+            } catch (error) {
+                output.innerHTML += `❌ Error: ${error.message}\n`;
+            }
+        }
+
+        async function demoCRMSync() {
+            const output = document.getElementById('crmOutput');
+            output.style.display = 'block';
+            output.innerHTML = 'Syncing with CRM systems...\n';
+            
+            try {
+                output.innerHTML += `👥 Salesforce: Syncing leads...\n`;
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                output.innerHTML += `✅ Salesforce: 23 leads synced\n`;
+                
+                output.innerHTML += `👥 HubSpot: Syncing contacts...\n`;
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                output.innerHTML += `✅ HubSpot: 45 contacts synced\n`;
+                
+                output.innerHTML += `\n🎉 CRM sync completed successfully!\n`;
+            } catch (error) {
+                output.innerHTML += `❌ Error: ${error.message}\n`;
+            }
+        }
+
+        // Chatbot Demo
+        function toggleChatbot() {
+            if (typeof aiAnalytics !== 'undefined' && aiAnalytics.chatbot) {
+                aiAnalytics.toggleChatbot();
+            } else {
+                alert('AI Chatbot is not available in this demo.');
+            }
+        }
+
+        function demoChatbotQueries() {
+            const output = document.getElementById('chatbotOutput');
+            output.style.display = 'block';
+            output.innerHTML = 'Sample AI Chatbot Queries:\n\n';
+            output.innerHTML += `💬 "What's our revenue trend for this quarter?"\n`;
+            output.innerHTML += `💬 "Show me customers at risk of churning"\n`;
+            output.innerHTML += `💬 "Generate a sales report for Sadat Luxe"\n`;
+            output.innerHTML += `💬 "What are our top performing products?"\n`;
+            output.innerHTML += `💬 "Create an inventory optimization plan"\n`;
+            output.innerHTML += `💬 "Analyze our customer satisfaction scores"\n\n`;
+            output.innerHTML += `🤖 The AI chatbot can understand natural language queries and provide intelligent responses based on your business data.\n`;
+        }
+
+        // Mock data generators
+        function generateMockHistoricalData() {
+            return Array.from({ length: 24 }, (_, i) => ({
+                month: i + 1,
+                revenue: Math.random() * 1000000 + 500000,
+                season: Math.floor(i / 3) + 1,
+                market_trend: Math.random() * 0.2 - 0.1
+            }));
+        }
+
+        function generateMockCustomerData() {
+            return Array.from({ length: 100 }, (_, i) => ({
+                id: i + 1,
+                purchase_frequency: Math.random() * 10,
+                total_spent: Math.random() * 50000,
+                last_purchase: new Date(Date.now() - Math.random() * 90 * 24 * 60 * 60 * 1000),
+                support_tickets: Math.floor(Math.random() * 5)
+            }));
+        }
+
+        function generateMockInventoryData() {
+            return Array.from({ length: 10 }, (_, i) => ({
+                id: i + 1,
+                name: `Product ${i + 1}`,
+                current_stock: Math.floor(Math.random() * 100),
+                reorder_point: 20,
+                lead_time: Math.floor(Math.random() * 14) + 7
+            }));
+        }
+
+        function generateMockSalesHistory() {
+            return Array.from({ length: 30 }, () => ({
+                date: new Date(),
+                items: Array.from({ length: Math.floor(Math.random() * 5) + 1 }, (_, i) => ({
+                    product_id: Math.floor(Math.random() * 10) + 1,
+                    quantity: Math.floor(Math.random() * 10) + 1
+                }))
+            }));
+        }
+
+        function generateMockTransactionData() {
+            return Array.from({ length: 50 }, (_, i) => ({
+                id: i + 1,
+                amount: Math.random() * 10000,
+                location: ['US', 'UK', 'CA', 'AU'][Math.floor(Math.random() * 4)],
+                time: new Date(),
+                user_behavior: Math.random(),
+                device_info: ['mobile', 'desktop', 'tablet'][Math.floor(Math.random() * 3)]
+            }));
+        }
+
+        // Detail functions (placeholder implementations)
+        function showPredictionDetails() { alert('Revenue prediction uses machine learning models trained on historical data to forecast future revenue trends.'); }
+        function showChurnDetails() { alert('Customer churn analysis uses behavioral patterns and engagement metrics to predict which customers are likely to leave.'); }
+        function showInventoryDetails() { alert('Inventory optimization uses demand forecasting and cost analysis to determine optimal stock levels.'); }
+        function showFraudDetails() { alert('Fraud detection uses machine learning to identify unusual transaction patterns and flag suspicious activity.'); }
+        function showOnboardingDetails() { alert('Customer onboarding workflow automates the entire process from registration to account activation.'); }
+        function showInvoiceDetails() { alert('Invoice processing workflow uses AI to extract data and automate approval and payment processes.'); }
+        function showInventoryManagementDetails() { alert('Inventory management workflow monitors stock levels and automatically triggers reorders when needed.'); }
+        function showEmployeeDetails() { alert('Employee onboarding workflow handles IT setup, access provisioning, and training assignments.'); }
+        function showAccountingDetails() { alert('Accounting integrations sync invoices, payments, and financial data with external accounting systems.'); }
+        function showCRMDetails() { alert('CRM integrations sync customer data, leads, and opportunities with external CRM platforms.'); }
+        function showPaymentDetails() { alert('Payment processing integrations handle secure payment processing and reconciliation.'); }
+        function showCommunicationDetails() { alert('Communication platform integrations enable automated marketing campaigns and messaging.'); }
+    </script>
+</body>
+</html>

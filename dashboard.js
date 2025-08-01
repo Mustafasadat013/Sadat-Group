@@ -83,6 +83,219 @@ class Dashboard {
         if (typeof analytics !== 'undefined') {
             this.analytics = analytics;
         }
+
+        // Initialize AI analytics if available
+        if (typeof aiAnalytics !== 'undefined') {
+            this.aiAnalytics = aiAnalytics;
+            this.setupAIFeatures();
+        }
+
+        // Initialize workflow automation if available
+        if (typeof workflowAutomation !== 'undefined') {
+            this.workflowAutomation = workflowAutomation;
+        }
+
+        // Initialize integration hub if available
+        if (typeof integrationHub !== 'undefined') {
+            this.integrationHub = integrationHub;
+        }
+    }
+
+    setupAIFeatures() {
+        // Setup AI insights
+        this.loadAIInsights();
+        
+        // Setup AI recommendations
+        this.loadAIRecommendations();
+        
+        // Setup recommendation filters
+        this.setupRecommendationFilters();
+    }
+
+    async loadAIInsights() {
+        try {
+            const insights = await this.aiAnalytics.generateInsights();
+            this.displayAIInsights(insights);
+        } catch (error) {
+            console.error('Failed to load AI insights:', error);
+        }
+    }
+
+    async loadAIRecommendations() {
+        try {
+            const context = {
+                user: this.currentUser,
+                business: 'all',
+                data: this.analytics?.metrics || {},
+                preferences: {}
+            };
+            
+            const recommendations = await this.aiAnalytics.generateRecommendations(context);
+            this.displayAIRecommendations(recommendations);
+        } catch (error) {
+            console.error('Failed to load AI recommendations:', error);
+        }
+    }
+
+    displayAIInsights(insights) {
+        const container = document.getElementById('aiInsights');
+        if (container && insights) {
+            container.innerHTML = insights.map(insight => `
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <div class="insight-icon ${insight.type}">
+                            <i class="fas ${this.getInsightIcon(insight.type)}"></i>
+                        </div>
+                        <div class="insight-content">
+                            <h4>${insight.title}</h4>
+                            <p>${insight.description}</p>
+                            <span class="insight-confidence">${insight.confidence}% confidence</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+
+    displayAIRecommendations(recommendations) {
+        const container = document.getElementById('aiRecommendations');
+        if (container && recommendations) {
+            const allRecommendations = [
+                ...recommendations.business.map(rec => ({ ...rec, type: 'business' })),
+                ...recommendations.operational.map(rec => ({ ...rec, type: 'operational' })),
+                ...recommendations.financial.map(rec => ({ ...rec, type: 'financial' })),
+                ...recommendations.strategic.map(rec => ({ ...rec, type: 'strategic' }))
+            ];
+
+            container.innerHTML = allRecommendations.map(rec => `
+                <div class="recommendation-card" data-type="${rec.type}">
+                    <div class="recommendation-type ${rec.type}">${rec.type}</div>
+                    <div class="recommendation-title">${rec.title || rec}</div>
+                    <div class="recommendation-description">${rec.description || rec}</div>
+                    <div class="recommendation-actions">
+                        <button class="recommendation-action" onclick="dashboard.implementRecommendation('${rec.type}', '${rec.title || rec}')">
+                            Implement
+                        </button>
+                        <button class="recommendation-action secondary" onclick="dashboard.dismissRecommendation('${rec.title || rec}')">
+                            Dismiss
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+
+    setupRecommendationFilters() {
+        const filters = document.querySelectorAll('.recommendation-filter');
+        filters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                // Remove active class from all filters
+                filters.forEach(f => f.classList.remove('active'));
+                // Add active class to clicked filter
+                filter.classList.add('active');
+                
+                const filterType = filter.dataset.filter;
+                this.filterRecommendations(filterType);
+            });
+        });
+    }
+
+    filterRecommendations(filterType) {
+        const cards = document.querySelectorAll('.recommendation-card');
+        cards.forEach(card => {
+            if (filterType === 'all' || card.dataset.type === filterType) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    async implementRecommendation(type, title) {
+        try {
+            // Show loading state
+            this.showLoadingState(true);
+            
+            // Simulate implementation
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Show success message
+            this.showMessage(`Recommendation "${title}" implemented successfully!`, 'success');
+            
+            // Refresh recommendations
+            await this.loadAIRecommendations();
+        } catch (error) {
+            this.showMessage('Failed to implement recommendation', 'error');
+        } finally {
+            this.showLoadingState(false);
+        }
+    }
+
+    async dismissRecommendation(title) {
+        try {
+            // Remove recommendation from display
+            const cards = document.querySelectorAll('.recommendation-card');
+            cards.forEach(card => {
+                if (card.querySelector('.recommendation-title').textContent === title) {
+                    card.style.opacity = '0.5';
+                    card.style.pointerEvents = 'none';
+                }
+            });
+            
+            this.showMessage(`Recommendation "${title}" dismissed`, 'info');
+        } catch (error) {
+            console.error('Failed to dismiss recommendation:', error);
+        }
+    }
+
+    getInsightIcon(type) {
+        const icons = {
+            revenue: 'fa-dollar-sign',
+            customer: 'fa-users',
+            inventory: 'fa-boxes',
+            fraud: 'fa-shield-alt',
+            trend: 'fa-chart-line'
+        };
+        return icons[type] || 'fa-lightbulb';
+    }
+
+    showLoadingState(show) {
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        if (loadingIndicator) {
+            loadingIndicator.style.display = show ? 'block' : 'none';
+        }
+    }
+
+    showMessage(message, type = 'info') {
+        // Create message element
+        const messageElement = document.createElement('div');
+        messageElement.className = `message ${type}`;
+        messageElement.innerHTML = `
+            <div class="message-content">
+                <i class="fas ${this.getMessageIcon(type)}"></i>
+                <span>${message}</span>
+            </div>
+        `;
+
+        // Add to page
+        document.body.appendChild(messageElement);
+
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+            if (messageElement.parentNode) {
+                messageElement.parentNode.removeChild(messageElement);
+            }
+        }, 5000);
+    }
+
+    getMessageIcon(type) {
+        const icons = {
+            success: 'fa-check-circle',
+            error: 'fa-exclamation-circle',
+            warning: 'fa-exclamation-triangle',
+            info: 'fa-info-circle'
+        };
+        return icons[type] || 'fa-info-circle';
     }
 
     initEventListeners() {
