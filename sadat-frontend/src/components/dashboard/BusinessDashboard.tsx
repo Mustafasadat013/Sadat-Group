@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuthStore } from '@/store';
 import { Business, Order, Product, Service } from '@/types';
 import { 
   TrendingUp, 
@@ -114,7 +114,7 @@ const mockServices: Service[] = [
 ];
 
 export default function BusinessDashboard({ business }: BusinessDashboardProps) {
-  const { user, isManager } = useAuth();
+  const { user, isManager } = useAuthStore();
   const [activeTab, setActiveTab] = useState('overview');
   const [searchTerm, setSearchTerm] = useState('');
 

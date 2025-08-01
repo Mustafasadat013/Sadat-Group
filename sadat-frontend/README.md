@@ -32,21 +32,32 @@ Sadat Group encompasses 8 distinct businesses:
 - **Analytics** - Business performance metrics
 
 ### 🎨 UI/UX Features
-- **Modern Design** - Clean, professional interface
+- **Modern Design** - Clean, professional interface with dark mode support
 - **Consistent Branding** - Unified design across all businesses
-- **Interactive Components** - Forms, modals, tables, charts
-- **Loading States** - Smooth user experience
-- **Error Handling** - User-friendly error messages
+- **Interactive Components** - Forms, modals, tables, charts, command palette
+- **Loading States** - Smooth user experience with skeleton loaders
+- **Error Handling** - User-friendly error messages with error boundaries
+- **Notifications** - Toast notifications for user feedback
+- **Command Palette** - Quick navigation with ⌘K shortcut
+- **Responsive Design** - Mobile-first approach with PWA support
+- **Accessibility** - WCAG 2.1 compliant with keyboard navigation
 
 ## 🛠 Tech Stack
 
-- **Framework**: Next.js 14 with App Router
+- **Framework**: Next.js 15 with App Router
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS with Dark Mode
 - **Icons**: Lucide React
 - **Forms**: React Hook Form with Yup validation
-- **State Management**: React Context API
+- **State Management**: Zustand with persistence
+- **Data Fetching**: React Query (TanStack Query)
 - **UI Components**: Custom components with Headless UI
+- **Testing**: Jest + React Testing Library
+- **PWA**: Next.js PWA with offline support
+- **Internationalization**: Next.js i18n
+- **Error Tracking**: Sentry integration
+- **Performance**: Lighthouse CI
+- **CI/CD**: GitHub Actions
 
 ## 🚀 Getting Started
 
@@ -109,17 +120,40 @@ src/
 ├── components/            # Reusable components
 │   ├── layout/           # Layout components
 │   ├── dashboard/        # Dashboard components
-│   └── business/         # Business-specific components
-├── contexts/             # React contexts
-├── data/                 # Mock data and constants
-├── types/                # TypeScript type definitions
-└── styles/               # Global styles
+│   ├── business/         # Business-specific components
+│   ├── ui/               # UI components (buttons, forms, etc.)
+│   └── providers/        # Context providers
+├── store/                 # Zustand stores
+├── lib/                   # Utilities and API client
+├── data/                  # Mock data and constants
+├── types/                 # TypeScript type definitions
+└── styles/                # Global styles
+
+# Configuration Files
+├── .github/              # GitHub Actions workflows
+├── public/               # Static assets and PWA files
+├── jest.config.js        # Jest configuration
+├── next.config.ts        # Next.js configuration
+├── tailwind.config.js    # Tailwind CSS configuration
+└── package.json          # Dependencies and scripts
 ```
 
 ## 🎯 Key Components
 
+### State Management (Zustand)
+- **useAuthStore**: Authentication and user management
+- **useThemeStore**: Dark/light mode and theme preferences
+- **useNotificationStore**: Toast notifications system
+- **useUIStore**: UI state (sidebar, command palette)
+
+### Data Fetching (React Query)
+- **API Client**: Centralized API communication
+- **Caching**: Intelligent data caching and invalidation
+- **Error Handling**: Automatic retry and error states
+- **Optimistic Updates**: Immediate UI feedback
+
 ### Authentication System
-- **AuthContext**: Manages user authentication state
+- **useAuthStore**: Manages user authentication state
 - **Login Page**: Form validation and authentication
 - **Protected Routes**: Role-based access control
 
@@ -168,12 +202,77 @@ The application is fully responsive and optimized for:
 - **Headings**: Bold weights for hierarchy
 - **Body**: Regular weight for readability
 
+## 🚀 Advanced Features
+
+### Progressive Web App (PWA)
+- **Offline Support**: Works without internet connection
+- **Installable**: Can be installed on mobile devices
+- **Push Notifications**: Real-time updates
+- **App-like Experience**: Native mobile feel
+
+### Command Palette
+- **Quick Navigation**: Press ⌘K to open
+- **Search Everything**: Find pages, actions, and settings
+- **Keyboard Shortcuts**: Full keyboard navigation
+- **Smart Suggestions**: Context-aware commands
+
+### Dark Mode
+- **System Preference**: Automatically follows OS setting
+- **Manual Toggle**: User can override system preference
+- **Persistent**: Remembers user choice
+- **Smooth Transitions**: Animated theme switching
+
+### Error Handling
+- **Error Boundaries**: Graceful error recovery
+- **User-Friendly Messages**: Clear error explanations
+- **Retry Mechanisms**: Automatic retry for failed requests
+- **Error Tracking**: Sentry integration for monitoring
+
+### Performance Optimizations
+- **Code Splitting**: Automatic route-based splitting
+- **Image Optimization**: Next.js Image component
+- **Bundle Analysis**: Webpack bundle analyzer
+- **Lighthouse CI**: Automated performance testing
+
+## 🧪 Testing
+
+### Test Coverage
+- **Unit Tests**: Component and utility testing
+- **Integration Tests**: API and data flow testing
+- **E2E Tests**: Full user journey testing
+- **Visual Regression**: UI consistency testing
+
+### Running Tests
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Generate coverage report
+npm run test:coverage
+
+# Run specific test file
+npm test -- Notification.test.tsx
+```
+
 ## 🔧 Customization
 
 ### Adding New Businesses
 1. Update `src/types/index.ts` with new business type
 2. Add business data to `src/data/businesses.ts`
 3. Create business-specific components if needed
+
+### Environment Configuration
+1. Copy `.env.example` to `.env.local`
+2. Update environment variables as needed
+3. Restart development server
+
+### API Integration
+1. Update `src/lib/api.ts` with your API endpoints
+2. Configure authentication in the API client
+3. Update mock data with real API responses
 
 ### Modifying Styles
 - Use Tailwind CSS classes for styling
@@ -188,22 +287,44 @@ The application is fully responsive and optimized for:
 
 ## 🚀 Deployment
 
-### Build for Production
-```bash
-npm run build
-```
+### Production Deployment
+1. **Build the application**
+   ```bash
+   npm run build
+   ```
 
-### Start Production Server
-```bash
-npm start
-```
+2. **Deploy to your preferred platform**
+   - **Vercel**: `npx vercel --prod`
+   - **Netlify**: `npx netlify deploy --prod`
+   - **AWS**: Use the provided CloudFormation templates
 
-### Environment Variables
-Create a `.env.local` file for environment-specific configuration:
-```env
-NEXT_PUBLIC_API_URL=your-api-url
-NEXT_PUBLIC_APP_NAME=Sadat Group
-```
+3. **Environment Variables**
+   - Set all required environment variables
+   - Configure API endpoints
+   - Set up monitoring and analytics
+
+### CI/CD Pipeline
+- **Automated Testing**: Runs on every PR
+- **Security Scanning**: Dependency vulnerability checks
+- **Performance Testing**: Lighthouse CI integration
+- **Deployment**: Automatic deployment to staging/production
+
+## 📊 Monitoring & Analytics
+
+### Error Tracking
+- **Sentry Integration**: Real-time error monitoring
+- **Error Boundaries**: Graceful error handling
+- **Performance Monitoring**: Track app performance
+
+### Analytics
+- **Google Analytics**: User behavior tracking
+- **Custom Events**: Business-specific metrics
+- **Performance Metrics**: Core Web Vitals
+
+### Health Checks
+- **Uptime Monitoring**: Service availability
+- **Performance Alerts**: Automated notifications
+- **Error Rate Monitoring**: Track error frequencies
 
 ## 📊 API Integration
 
@@ -241,9 +362,10 @@ This project is proprietary software for Sadat Group.
 ## 🆘 Support
 
 For support and questions:
-- Email: support@sadatgroup.com
-- Documentation: [Link to docs]
-- Issues: [GitHub Issues]
+- **Email**: support@sadatgroup.com
+- **Documentation**: [docs.sadatgroup.com](https://docs.sadatgroup.com)
+- **Issues**: [GitHub Issues](https://github.com/sadatgroup/frontend/issues)
+- **Discord**: [Join our community](https://discord.gg/sadatgroup)
 
 ---
 

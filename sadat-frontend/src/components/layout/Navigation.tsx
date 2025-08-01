@@ -2,11 +2,13 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useAuth } from '@/contexts/AuthContext';
-import { Menu, X, User, LogOut, Settings, ChevronDown } from 'lucide-react';
+import { useAuthStore, useThemeStore, useUIStore } from '@/store';
+import { Menu, X, User, LogOut, Settings, ChevronDown, Sun, Moon, Command } from 'lucide-react';
 
 export default function Navigation() {
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuthStore();
+  const { theme, toggleTheme } = useThemeStore();
+  const { setCommandPaletteOpen } = useUIStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
@@ -50,6 +52,28 @@ export default function Navigation() {
 
           {/* User Menu */}
           <div className="flex items-center space-x-4">
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 text-gray-700 hover:text-blue-600 rounded-md hover:bg-gray-100 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-5 h-5" />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
+            </button>
+
+            {/* Command Palette */}
+            <button
+              onClick={() => setCommandPaletteOpen(true)}
+              className="p-2 text-gray-700 hover:text-blue-600 rounded-md hover:bg-gray-100 transition-colors"
+              aria-label="Open command palette"
+            >
+              <Command className="w-5 h-5" />
+            </button>
+
             {user ? (
               <div className="relative">
                 <button

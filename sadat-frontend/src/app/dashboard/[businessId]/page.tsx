@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuthStore } from '@/store';
 import { businesses } from '@/data/businesses';
 import BusinessDashboard from '@/components/dashboard/BusinessDashboard';
 import { BusinessType } from '@/types';
@@ -14,7 +14,7 @@ interface BusinessDashboardPageProps {
 }
 
 export default function BusinessDashboardPage({ params }: BusinessDashboardPageProps) {
-  const { user, isLoading, hasAccess } = useAuth();
+  const { user, isLoading, hasAccess } = useAuthStore();
   const router = useRouter();
   const [businessId, setBusinessId] = React.useState<BusinessType | null>(null);
 

@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuthStore } from '@/store';
 import { businesses } from '@/data/businesses';
 import { 
   TrendingUp, 
@@ -14,7 +14,7 @@ import {
 import Link from 'next/link';
 
 export default function DashboardPage() {
-  const { user, isLoading, hasAccess } = useAuth();
+  const { user, isLoading, hasAccess } = useAuthStore();
   const router = useRouter();
 
   useEffect(() => {

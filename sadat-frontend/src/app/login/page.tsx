@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuthStore, useNotificationStore } from '@/store';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -20,7 +20,8 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
-  const { login, isLoading } = useAuth();
+  const { login, isLoading } = useAuthStore();
+  const { addNotification } = useNotificationStore();
 
   const {
     register,
@@ -35,9 +36,19 @@ export default function LoginPage() {
     const success = await login(data.username, data.password);
     
     if (success) {
+      addNotification({
+        type: 'success',
+        title: 'Login Successful',
+        message: 'Welcome back to Sadat Group!',
+      });
       router.push('/dashboard');
     } else {
       setError('Invalid username or password');
+      addNotification({
+        type: 'error',
+        title: 'Login Failed',
+        message: 'Invalid username or password. Please try again.',
+      });
     }
   };
 
