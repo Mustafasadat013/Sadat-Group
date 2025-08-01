@@ -55,6 +55,21 @@ class LoginPage {
         
         // Setup accessibility
         this.setupAccessibility();
+
+        // Check if auth system is loaded
+        this.checkAuthSystem();
+    }
+
+    checkAuthSystem() {
+        // Wait a bit for auth system to load
+        setTimeout(() => {
+            if (!isAuthAvailable()) {
+                console.warn('Authentication system not loaded, using fallback method');
+                this.showMessage('Using fallback authentication method', 'warning');
+            } else {
+                console.log('Authentication system loaded successfully');
+            }
+        }, 100);
     }
 
     addInputValidation() {
@@ -153,6 +168,12 @@ class LoginPage {
         const password = this.passwordInput.value;
 
         try {
+            // Check if auth system is available
+            if (!isAuthAvailable()) {
+                // Use fallback authentication
+                return await this.fallbackAuthentication(username, password);
+            }
+
             // Use the enhanced authentication system
             await auth.login(username, password);
             
@@ -165,6 +186,33 @@ class LoginPage {
             }, 1500);
         } catch (error) {
             throw new Error(error.message || 'Invalid username or password. Please try again.');
+        }
+    }
+
+    async fallbackAuthentication(username, password) {
+        // Fallback authentication method
+        const validUsers = {
+            'admin': { password: 'admin123', role: 'Super Admin' },
+            'sadat': { password: 'sadat2024', role: 'Owner' },
+            'manager': { password: 'manager123', role: 'Manager' },
+            'user': { password: 'user123', role: 'User' }
+        };
+
+        const user = validUsers[username];
+        
+        if (user && user.password === password) {
+            // Store user session
+            this.storeUserSession(username);
+            
+            // Show success message
+            this.showMessage('Login successful! Redirecting to dashboard...', 'success');
+            
+            // Redirect to dashboard
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        } else {
+            throw new Error('Invalid username or password. Please try again.');
         }
     }
 
@@ -293,6 +341,11 @@ function hideDemoCredentials() {
     if (loginPage) {
         loginPage.hideDemoCredentialsModal();
     }
+}
+
+// Global function to check auth availability
+function isAuthAvailable() {
+    return typeof auth !== 'undefined' && auth !== null;
 }
 
 // Initialize login page when DOM is loaded

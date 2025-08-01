@@ -279,4 +279,25 @@ class AuthenticationSystem {
 }
 
 // Initialize authentication system
-const auth = new AuthenticationSystem();
+let auth;
+
+// Ensure DOM is loaded before initializing
+document.addEventListener('DOMContentLoaded', function() {
+    auth = new AuthenticationSystem();
+    console.log('Authentication system initialized');
+});
+
+// Fallback initialization for immediate access
+if (document.readyState === 'loading') {
+    // DOM is still loading, wait for it
+    document.addEventListener('DOMContentLoaded', function() {
+        if (!auth) {
+            auth = new AuthenticationSystem();
+            console.log('Authentication system initialized (fallback)');
+        }
+    });
+} else {
+    // DOM is already loaded
+    auth = new AuthenticationSystem();
+    console.log('Authentication system initialized (immediate)');
+}
