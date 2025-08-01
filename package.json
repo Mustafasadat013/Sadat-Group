@@ -1,0 +1,38 @@
+{
+    "name": "sadat-group-business-management",
+    "version": "1.0.0",
+    "description": "Comprehensive multi-business management platform for Sadat Group",
+    "main": "index.html",
+    "scripts": {
+        "start": "live-server --port=3000 --open=/index.html",
+        "dev": "live-server --port=3000 --open=/index.html --watch",
+        "serve": "live-server --port=5500 --open=/index.html",
+        "build": "echo 'No build process required for static HTML/CSS/JS'",
+        "test": "echo 'No tests specified'",
+        "lint": "echo 'No linting configured'"
+    },
+    "keywords": [
+        "business-management",
+        "dashboard",
+        "sadat-group",
+        "multi-business",
+        "windows11",
+        "glassmorphism"
+    ],
+    "author": "Sadat Group",
+    "license": "MIT",
+    "devDependencies": {
+        "live-server": "^1.2.2"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/your-username/sadat-group-business-management.git"
+    },
+    "bugs": {
+        "url": "https://github.com/your-username/sadat-group-business-management/issues"
+    },
+    "homepage": "https://github.com/your-username/sadat-group-business-management#readme"
+}

@@ -1,0 +1,43 @@
+{
+    "name": "Sadat Group Business Management System",
+    "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.vscode-typescript-next",
+                "bradlc.vscode-tailwindcss",
+                "esbenp.prettier-vscode",
+                "ms-vscode.vscode-json",
+                "formulahendry.auto-rename-tag",
+                "christian-kohler.path-intellisense",
+                "ms-vscode.live-server"
+            ],
+            "settings": {
+                "editor.formatOnSave": true,
+                "editor.defaultFormatter": "esbenp.prettier-vscode",
+                "files.associations": {
+                    "*.html": "html",
+                    "*.css": "css",
+                    "*.js": "javascript"
+                }
+            }
+        }
+    },
+    "forwardPorts": [3000, 5500],
+    "portsAttributes": {
+        "3000": {
+            "label": "Sadat Group System",
+            "onAutoForward": "notify"
+        },
+        "5500": {
+            "label": "Live Server",
+            "onAutoForward": "notify"
+        }
+    },
+    "postCreateCommand": "npm install -g live-server",
+    "remoteUser": "node"
+}
