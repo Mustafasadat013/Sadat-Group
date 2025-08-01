@@ -6,28 +6,67 @@ class StartupPage {
         this.progressText = document.querySelector('.progress-text');
         this.loadingText = document.querySelector('.loading-text');
         this.progressFill = document.querySelector('.progress-fill');
+        this.clockElement = document.getElementById('clock');
+        this.dateElement = document.getElementById('date');
         
         this.init();
     }
 
     init() {
+        // Initialize clock
+        this.initClock();
+        
         // Start the startup sequence
         this.startupSequence();
         
-        // Add click event to skip startup (for demo purposes)
+        // Add click event to continue to login
         document.addEventListener('click', () => {
-            this.skipToEnd();
+            this.continueToLogin();
         });
+        
+        // Add keyboard event to continue
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Escape') {
+                this.continueToLogin();
+            }
+        });
+    }
+
+    initClock() {
+        const updateClock = () => {
+            const now = new Date();
+            
+            // Update clock
+            const timeString = now.toLocaleTimeString('en-US', {
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            this.clockElement.textContent = timeString;
+            
+            // Update date
+            const dateString = now.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            this.dateElement.textContent = dateString;
+        };
+        
+        updateClock();
+        setInterval(updateClock, 1000);
     }
 
     startupSequence() {
         const steps = [
-            { text: 'Initializing system...', duration: 1000 },
-            { text: 'Loading core modules...', duration: 1200 },
-            { text: 'Establishing connections...', duration: 800 },
-            { text: 'Preparing interface...', duration: 600 },
+            { text: 'Initializing Sadat Group system...', duration: 1000 },
+            { text: 'Loading business modules...', duration: 1200 },
+            { text: 'Establishing secure connections...', duration: 800 },
+            { text: 'Preparing business dashboard...', duration: 600 },
             { text: 'Loading user preferences...', duration: 900 },
-            { text: 'Finalizing startup...', duration: 500 }
+            { text: 'Finalizing startup sequence...', duration: 500 }
         ];
 
         let currentStep = 0;
@@ -97,8 +136,8 @@ class StartupPage {
         });
 
         // Update final text
-        this.updateLoadingText('Ready to launch!');
-        this.progressText.textContent = 'Startup complete';
+        this.updateLoadingText('Ready to access business dashboard!');
+        this.progressText.textContent = 'System ready';
 
         // Add completion animation
         document.querySelector('.content-wrapper').style.animation = 'completionPulse 2s ease-in-out';
@@ -126,13 +165,13 @@ class StartupPage {
         overlay.innerHTML = `
             <div class="completion-content">
                 <div class="completion-icon">
-                    <i class="fas fa-rocket"></i>
+                    <i class="fas fa-building"></i>
                 </div>
-                <h2>Welcome to Your Software!</h2>
-                <p>Your application is ready to use.</p>
-                <button class="launch-btn" onclick="window.location.reload()">
-                    <i class="fas fa-play"></i>
-                    Launch Application
+                <h2>Welcome to Sadat Group!</h2>
+                <p>Your business management system is ready.</p>
+                <button class="launch-btn" onclick="window.location.href='login.html'">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Continue to Login
                 </button>
             </div>
         `;
@@ -246,6 +285,11 @@ class StartupPage {
         document.head.appendChild(style);
 
         document.body.appendChild(overlay);
+    }
+
+    continueToLogin() {
+        // Navigate to login page
+        window.location.href = 'login.html';
     }
 
     skipToEnd() {

@@ -113,6 +113,14 @@ body {
     font-size: 1.1rem;
     color: #b0b0b0;
     font-weight: 300;
+    margin-bottom: 0.5rem;
+}
+
+.owner-info {
+    font-size: 0.9rem;
+    color: #0078d4;
+    font-weight: 400;
+    font-style: italic;
 }
 
 /* Loading section */
@@ -229,6 +237,50 @@ body {
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+/* Time section */
+.time-section {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.clock {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    font-family: 'Segoe UI', monospace;
+}
+
+.date {
+    font-size: 1.1rem;
+    color: #b0b0b0;
+    font-weight: 400;
+}
+
+/* Continue prompt */
+.continue-prompt {
+    margin-bottom: 2rem;
+    text-align: center;
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+.continue-prompt p {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    margin-bottom: 0.5rem;
+}
+
+.arrow-indicator {
+    color: #0078d4;
+    font-size: 1.2rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
 }
 
 /* Version info */

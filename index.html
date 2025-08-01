@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Software - Startup</title>
+    <title>Sadat Group - Business Management System</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -19,11 +19,18 @@
             <div class="brand-section">
                 <div class="logo-container">
                     <div class="logo-icon">
-                        <i class="fas fa-rocket"></i>
+                        <i class="fas fa-building"></i>
                     </div>
                 </div>
-                <h1 class="app-name">Your Software</h1>
-                <p class="app-tagline">Ready to launch your ideas</p>
+                <h1 class="app-name">Sadat Group</h1>
+                <p class="app-tagline">Centralized Business Management System</p>
+                <p class="owner-info">Managed by Sayed Mustafa Sadat</p>
+            </div>
+
+            <!-- Live clock and date -->
+            <div class="time-section">
+                <div class="clock" id="clock">00:00:00</div>
+                <div class="date" id="date">Loading...</div>
             </div>
 
             <!-- Loading animation -->
@@ -33,7 +40,7 @@
                     <div class="dot"></div>
                     <div class="dot"></div>
                 </div>
-                <p class="loading-text">Starting up...</p>
+                <p class="loading-text">Initializing system...</p>
             </div>
 
             <!-- Progress bar -->
@@ -41,33 +48,41 @@
                 <div class="progress-bar">
                     <div class="progress-fill"></div>
                 </div>
-                <p class="progress-text">Loading components...</p>
+                <p class="progress-text">Loading business modules...</p>
             </div>
 
             <!-- Status messages -->
             <div class="status-messages">
                 <div class="status-item" data-status="initializing">
                     <i class="fas fa-cog fa-spin"></i>
-                    <span>Initializing system...</span>
+                    <span>Initializing Sadat Group system...</span>
                 </div>
                 <div class="status-item" data-status="loading-modules">
-                    <i class="fas fa-cube"></i>
-                    <span>Loading modules...</span>
+                    <i class="fas fa-building"></i>
+                    <span>Loading business modules...</span>
                 </div>
                 <div class="status-item" data-status="connecting">
                     <i class="fas fa-wifi"></i>
-                    <span>Establishing connections...</span>
+                    <span>Establishing secure connections...</span>
                 </div>
                 <div class="status-item" data-status="ready">
                     <i class="fas fa-check-circle"></i>
-                    <span>Ready to launch</span>
+                    <span>Ready to access business dashboard</span>
+                </div>
+            </div>
+
+            <!-- Continue prompt -->
+            <div class="continue-prompt">
+                <p>Click anywhere or press any key to continue</p>
+                <div class="arrow-indicator">
+                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
 
             <!-- Version info -->
             <div class="version-info">
-                <p>Version 1.0.0</p>
-                <p>&copy; 2024 Your Company</p>
+                <p>Sadat Group Management System v1.0.0</p>
+                <p>&copy; 2024 Sadat Group. All rights reserved.</p>
             </div>
         </div>
 

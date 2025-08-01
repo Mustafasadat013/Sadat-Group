@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadat Luxe - Business Dashboard</title>
+    <link rel="stylesheet" href="business-dashboard-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="business-dashboard-container">
+        <!-- Header -->
+        <header class="business-header">
+            <div class="header-left">
+                <button class="back-btn" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Main Dashboard
+                </button>
+                <div class="business-info">
+                    <div class="business-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="business-details">
+                        <h1>Sadat Luxe</h1>
+                        <p>Luxury Retail & Fashion</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="view-mode-toggle">
+                    <button class="mode-btn active" data-mode="view">
+                        <i class="fas fa-eye"></i>
+                        View Mode
+                    </button>
+                    <button class="mode-btn" data-mode="edit">
+                        <i class="fas fa-edit"></i>
+                        Edit Mode
+                    </button>
+                </div>
+                <div class="user-menu">
+                    <div class="user-profile">
+                        <img src="https://via.placeholder.com/40x40/0078d4/ffffff?text=U" alt="User" class="user-avatar">
+                        <span class="user-name" id="userName">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="business-main">
+            <!-- Business Overview -->
+            <section class="overview-section">
+                <div class="overview-header">
+                    <h2>Business Overview</h2>
+                    <div class="date-filter">
+                        <select id="dateFilter">
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month" selected>This Month</option>
+                            <option value="year">This Year</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="overview-widgets">
+                    <div class="overview-widget">
+                        <div class="widget-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="widget-content">
+                            <h3>Revenue</h3>
+                            <p class="widget-value">$1,234,567</p>
+                            <span class="widget-change positive">+15.2%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-widget">
+                        <div class="widget-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div class="widget-content">
+                            <h3>Orders</h3>
+                            <p class="widget-value">156</p>
+                            <span class="widget-change positive">+8.5%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-widget">
+                        <div class="widget-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="widget-content">
+                            <h3>Customers</h3>
+                            <p class="widget-value">89</p>
+                            <span class="widget-change positive">+12.3%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-widget">
+                        <div class="widget-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="widget-content">
+                            <h3>Products</h3>
+                            <p class="widget-value">234</p>
+                            <span class="widget-change positive">+5.1%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modules Grid -->
+            <section class="modules-section">
+                <h2>Business Modules</h2>
+                <div class="modules-grid">
+                    <div class="module-card" data-module="products">
+                        <div class="module-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="module-content">
+                            <h3>Products & Assets</h3>
+                            <p>Manage inventory, products, and assets</p>
+                            <div class="module-stats">
+                                <span>234 Products</span>
+                                <span>12 Categories</span>
+                            </div>
+                        </div>
+                        <div class="module-actions">
+                            <button class="btn-primary" onclick="openModule('products')">
+                                <i class="fas fa-external-link-alt"></i>
+                                Open Module
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="module-card" data-module="clients">
+                        <div class="module-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="module-content">
+                            <h3>Clients & Investors</h3>
+                            <p>Manage customer relationships and data</p>
+                            <div class="module-stats">
+                                <span>89 Clients</span>
+                                <span>15 VIP</span>
+                            </div>
+                        </div>
+                        <div class="module-actions">
+                            <button class="btn-primary" onclick="openModule('clients')">
+                                <i class="fas fa-external-link-alt"></i>
+                                Open Module
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="module-card" data-module="transactions">
+                        <div class="module-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="module-content">
+                            <h3>Transactions</h3>
+                            <p>View sales, purchases, and financial data</p>
+                            <div class="module-stats">
+                                <span>156 Orders</span>
+                                <span>$1.2M Revenue</span>
+                            </div>
+                        </div>
+                        <div class="module-actions">
+                            <button class="btn-primary" onclick="openModule('transactions')">
+                                <i class="fas fa-external-link-alt"></i>
+                                Open Module
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="module-card" data-module="finances">
+                        <div class="module-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="module-content">
+                            <h3>Finances</h3>
+                            <p>Track expenses, income, and financial reports</p>
+                            <div class="module-stats">
+                                <span>$1.2M Income</span>
+                                <span>$234K Expenses</span>
+                            </div>
+                        </div>
+                        <div class="module-actions">
+                            <button class="btn-primary" onclick="openModule('finances')">
+                                <i class="fas fa-external-link-alt"></i>
+                                Open Module
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="module-card" data-module="staff">
+                        <div class="module-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="module-content">
+                            <h3>Staff Management</h3>
+                            <p>Manage employees, roles, and permissions</p>
+                            <div class="module-stats">
+                                <span>12 Staff</span>
+                                <span>4 Roles</span>
+                            </div>
+                        </div>
+                        <div class="module-actions">
+                            <button class="btn-primary" onclick="openModule('staff')">
+                                <i class="fas fa-external-link-alt"></i>
+                                Open Module
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="module-card" data-module="tasks">
+                        <div class="module-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="module-content">
+                            <h3>Tasks & Projects</h3>
+                            <p>Assign tasks, track progress, and deadlines</p>
+                            <div class="module-stats">
+                                <span>23 Tasks</span>
+                                <span>8 Projects</span>
+                            </div>
+                        </div>
+                        <div class="module-actions">
+                            <button class="btn-primary" onclick="openModule('tasks')">
+                                <i class="fas fa-external-link-alt"></i>
+                                Open Module
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="module-card" data-module="reports">
+                        <div class="module-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="module-content">
+                            <h3>Reports & Analytics</h3>
+                            <p>Generate reports and view analytics</p>
+                            <div class="module-stats">
+                                <span>15 Reports</span>
+                                <span>8 Templates</span>
+                            </div>
+                        </div>
+                        <div class="module-actions">
+                            <button class="btn-primary" onclick="openModule('reports')">
+                                <i class="fas fa-external-link-alt"></i>
+                                Open Module
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="module-card" data-module="settings">
+                        <div class="module-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="module-content">
+                            <h3>Settings & Configuration</h3>
+                            <p>Configure business settings and preferences</p>
+                            <div class="module-stats">
+                                <span>System</span>
+                                <span>Configuration</span>
+                            </div>
+                        </div>
+                        <div class="module-actions">
+                            <button class="btn-primary" onclick="openModule('settings')">
+                                <i class="fas fa-external-link-alt"></i>
+                                Open Module
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="activity-section">
+                <h2>Recent Activity</h2>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>New order received</h4>
+                            <p>Order #LUX-2024-001 - Luxury Watch Collection</p>
+                            <span class="activity-time">2 minutes ago</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>New customer registered</h4>
+                            <p>VIP customer John Smith added to database</p>
+                            <span class="activity-time">15 minutes ago</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Product updated</h4>
+                            <p>Luxury Handbag inventory updated</p>
+                            <span class="activity-time">1 hour ago</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Sales report generated</h4>
+                            <p>Monthly sales report for December 2024</p>
+                            <span class="activity-time">3 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Module Modal -->
+    <div class="module-modal" id="moduleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Module Title</h3>
+                <button class="modal-close" onclick="closeModule()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Module content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="business-dashboard.js"></script>
+</body>
+</html>
