@@ -182,91 +182,20 @@ body {
     outline-offset: 2px;
 }
 
-/* MFA Modal */
+/* MFA Modal (Disabled) */
 .mfa-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    animation: fadeIn var(--transition-normal);
+    display: none;
 }
 
 .mfa-content {
-    background: var(--surface-color);
-    border-radius: var(--radius-xl);
-    padding: var(--spacing-2xl);
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-    box-shadow: var(--shadow-xl);
-    animation: slideInUp var(--transition-normal);
+    display: none;
 }
 
-.mfa-content h3 {
-    color: var(--text-primary);
-    margin-bottom: var(--spacing-md);
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-.mfa-content p {
-    color: var(--text-secondary);
-    margin-bottom: var(--spacing-lg);
-    line-height: 1.5;
-}
-
-.mfa-content input {
-    width: 100%;
-    padding: var(--spacing-md);
-    border: 2px solid var(--border-color);
-    border-radius: var(--radius-md);
-    font-size: 1.2rem;
-    text-align: center;
-    letter-spacing: 0.5em;
-    margin-bottom: var(--spacing-lg);
-    background: var(--surface-color);
-    color: var(--text-primary);
-    transition: border-color var(--transition-normal);
-}
-
-.mfa-content input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.1);
-}
-
+.mfa-content h3,
+.mfa-content p,
+.mfa-content input,
 .mfa-content button {
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    padding: var(--spacing-md) var(--spacing-xl);
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    margin: 0 var(--spacing-sm);
-    transition: all var(--transition-normal);
-}
-
-.mfa-content button:hover {
-    background: var(--secondary-color);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-}
-
-.mfa-content button:last-child {
-    background: var(--text-muted);
-}
-
-.mfa-content button:last-child:hover {
-    background: var(--text-secondary);
+    display: none;
 }
 
 /* Enhanced form styles */

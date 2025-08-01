@@ -32,12 +32,8 @@ class AuthenticationSystem {
                 this.createSecureSession(response.user);
                 this.logSecurityEvent('login_success', username);
                 
-                // Check if MFA is required
-                if (this.currentUser.requiresMFA) {
-                    this.showMFAPrompt();
-                } else {
-                    this.redirectToDashboard();
-                }
+                // Redirect directly to dashboard (MFA disabled)
+                this.redirectToDashboard();
             } else {
                 throw new Error(response.message || 'Authentication failed');
             }
@@ -56,8 +52,8 @@ class AuthenticationSystem {
 
         // In production, this would be a real API call
         const validUsers = {
-            'admin': { password: 'admin123', role: 'super_admin', requiresMFA: true },
-            'sadat': { password: 'sadat2024', role: 'owner', requiresMFA: true },
+            'admin': { password: 'admin123', role: 'super_admin', requiresMFA: false },
+            'sadat': { password: 'sadat2024', role: 'owner', requiresMFA: false },
             'manager': { password: 'manager123', role: 'manager', requiresMFA: false },
             'user': { password: 'user123', role: 'user', requiresMFA: false }
         };
@@ -84,24 +80,11 @@ class AuthenticationSystem {
         };
     }
 
-    // Multi-Factor Authentication
+    // Multi-Factor Authentication (Disabled for now)
     async verifyMFA(code) {
-        try {
-            // Simulate MFA verification
-            await new Promise(resolve => setTimeout(resolve, 500));
-            
-            // In production, verify against authenticator app or SMS
-            if (code === '123456') { // Demo code
-                this.mfaEnabled = true;
-                this.logSecurityEvent('mfa_success', this.currentUser.username);
-                this.redirectToDashboard();
-            } else {
-                throw new Error('Invalid MFA code');
-            }
-        } catch (error) {
-            this.logSecurityEvent('mfa_failed', this.currentUser.username);
-            throw error;
-        }
+        // MFA is currently disabled
+        console.log('MFA is disabled');
+        this.redirectToDashboard();
     }
 
     // Secure session management
@@ -248,21 +231,9 @@ class AuthenticationSystem {
     }
 
     showMFAPrompt() {
-        // Create MFA modal
-        const mfaModal = document.createElement('div');
-        mfaModal.className = 'mfa-modal';
-        mfaModal.innerHTML = `
-            <div class="mfa-content">
-                <h3>Two-Factor Authentication</h3>
-                <p>Enter the 6-digit code from your authenticator app</p>
-                <input type="text" id="mfaCode" maxlength="6" placeholder="123456">
-                <button onclick="auth.verifyMFA(document.getElementById('mfaCode').value)">
-                    Verify
-                </button>
-                <button onclick="auth.logout()">Cancel</button>
-            </div>
-        `;
-        document.body.appendChild(mfaModal);
+        // MFA is disabled - redirect directly to dashboard
+        console.log('MFA prompt disabled');
+        this.redirectToDashboard();
     }
 
     redirectToDashboard() {
