@@ -299,38 +299,8 @@ class Dashboard {
     }
 
     initEventListeners() {
-        // Add click handlers for business unit cards
-        const businessCards = document.querySelectorAll('.appointment-item[onclick]');
-        businessCards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                if (e.target.closest('.appointment-item')) {
-                    // Add visual feedback
-                    card.style.transform = 'scale(0.98)';
-                    setTimeout(() => {
-                        card.style.transform = '';
-                    }, 150);
-                }
-            });
-        });
-
-        // Add hover effects for cards
-        const cards = document.querySelectorAll('.card, .appointment-item');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-3px)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-            });
-        });
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                // Close any open modals or panels
-            }
-        });
+        // Simple event listeners for pure data dashboard
+        console.log('Dashboard initialized with pure data view');
     }
 
     async loadDashboardData() {
@@ -435,45 +405,8 @@ class Dashboard {
     }
 
     updateBusinessTiles(data) {
-        // Update business card data in new structure
-        Object.keys(data).forEach(business => {
-            const card = document.querySelector(`.appointment-item[onclick*="${business}"]`);
-            if (card) {
-                const paragraphs = card.querySelectorAll('p');
-                const businessData = data[business];
-                
-                // Update the content based on business type
-                if (business === 'luxe' && paragraphs.length >= 2) {
-                    if (businessData.revenue) {
-                        paragraphs[0].innerHTML = `<i class="fas fa-dollar-sign"></i> Revenue: ${businessData.revenue}`;
-                    }
-                    if (businessData.orders) {
-                        paragraphs[1].innerHTML = `<i class="fas fa-shopping-cart"></i> Orders: ${businessData.orders}`;
-                    }
-                } else if (business === 'investments' && paragraphs.length >= 2) {
-                    if (businessData.portfolio) {
-                        paragraphs[0].innerHTML = `<i class="fas fa-chart-line"></i> Portfolio: ${businessData.portfolio}`;
-                    }
-                    if (businessData.investors) {
-                        paragraphs[1].innerHTML = `<i class="fas fa-users"></i> Investors: ${businessData.investors}`;
-                    }
-                } else if (business === 'properties' && paragraphs.length >= 2) {
-                    if (businessData.properties) {
-                        paragraphs[0].innerHTML = `<i class="fas fa-home"></i> Properties: ${businessData.properties}`;
-                    }
-                    if (businessData.value) {
-                        paragraphs[1].innerHTML = `<i class="fas fa-dollar-sign"></i> Value: ${businessData.value}`;
-                    }
-                } else if (business === 'technology' && paragraphs.length >= 2) {
-                    if (businessData.projects) {
-                        paragraphs[0].innerHTML = `<i class="fas fa-project-diagram"></i> Projects: ${businessData.projects}`;
-                    }
-                    if (businessData.clients) {
-                        paragraphs[1].innerHTML = `<i class="fas fa-users"></i> Clients: ${businessData.clients}`;
-                    }
-                }
-            }
-        });
+        // Update business data in pure data format
+        console.log('Business data updated:', data);
     }
 }
 
@@ -501,123 +434,13 @@ document.addEventListener('DOMContentLoaded', () => {
     new Dashboard();
 });
 
-// Add some additional interactive features for new design
+// Pure data dashboard - no interactive features
 document.addEventListener('DOMContentLoaded', () => {
-    // Add hover effects to cards
-    const cards = document.querySelectorAll('.card, .appointment-item');
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-3px)';
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0)';
-        });
-    });
-
-    // Add click effects to overview items
-    const overviewItems = document.querySelectorAll('.overview-item');
-    overviewItems.forEach(item => {
-        item.addEventListener('click', () => {
-            item.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                item.style.transform = 'translateY(-3px)';
-            }, 150);
-        });
-    });
-
-    // Add smooth interactions for appointment items
-    const appointmentItems = document.querySelectorAll('.appointment-item');
-    appointmentItems.forEach(item => {
-        item.addEventListener('click', () => {
-            // Add click effect
-            item.style.background = '#e1ecfb';
-            setTimeout(() => {
-                item.style.background = '#f8fbff';
-            }, 300);
-        });
-    });
+    console.log('Pure data dashboard loaded');
 });
 
-// Add real-time updates simulation for new design
-setInterval(() => {
-    // Simulate real-time data updates for overview items
-    const overviewValues = document.querySelectorAll('.overview-item .value');
-    overviewValues.forEach(value => {
-        const currentValue = value.textContent;
-        const isCurrency = currentValue.includes('$');
-        
-        if (isCurrency) {
-            const number = parseInt(currentValue.replace(/[^0-9]/g, ''));
-            const change = Math.floor(Math.random() * 1000) - 500;
-            const newValue = Math.max(0, number + change);
-            value.textContent = '$' + newValue.toLocaleString();
-        } else {
-            const number = parseInt(currentValue.replace(/[^0-9]/g, ''));
-            const change = Math.floor(Math.random() * 10) - 5;
-            const newValue = Math.max(0, number + change);
-            value.textContent = newValue.toLocaleString();
-        }
-    });
+// Pure data dashboard - no real-time updates
+console.log('Pure data dashboard ready');
 
-    // Update stats values
-    const statsValues = document.querySelectorAll('.stats-value');
-    statsValues.forEach(value => {
-        const currentValue = value.textContent;
-        const isCurrency = currentValue.includes('$');
-        
-        if (isCurrency) {
-            const number = parseInt(currentValue.replace(/[^0-9]/g, ''));
-            const change = Math.floor(Math.random() * 1000) - 500;
-            const newValue = Math.max(0, number + change);
-            value.textContent = '$' + newValue.toLocaleString();
-        } else {
-            const number = parseInt(currentValue.replace(/[^0-9]/g, ''));
-            const change = Math.floor(Math.random() * 10) - 5;
-            const newValue = Math.max(0, number + change);
-            value.textContent = newValue.toLocaleString();
-        }
-    });
-}, 30000); // Update every 30 seconds
-
-// Add CSS for additional animations
-const style = document.createElement('style');
-style.textContent = `
-    .widget-value {
-        transition: all 0.3s ease;
-    }
-    
-    .business-tile {
-        transition: all 0.3s ease;
-    }
-    
-    .activity-item {
-        transition: all 0.3s ease;
-    }
-    
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    .widget, .business-tile, .activity-item {
-        animation: fadeInUp 0.6s ease-out;
-    }
-    
-    .widget:nth-child(1) { animation-delay: 0.1s; }
-    .widget:nth-child(2) { animation-delay: 0.2s; }
-    .widget:nth-child(3) { animation-delay: 0.3s; }
-    .widget:nth-child(4) { animation-delay: 0.4s; }
-    
-    .business-tile:nth-child(1) { animation-delay: 0.5s; }
-    .business-tile:nth-child(2) { animation-delay: 0.6s; }
-    .business-tile:nth-child(3) { animation-delay: 0.7s; }
-    .business-tile:nth-child(4) { animation-delay: 0.8s; }
-`;
-document.head.appendChild(style);
+// Pure data dashboard - no CSS animations
+console.log('All styling removed - pure data view active');
