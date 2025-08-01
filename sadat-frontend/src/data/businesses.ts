@@ -1,0 +1,108 @@
+import { Business } from '@/types';
+
+export const businesses: Business[] = [
+  {
+    id: 'sadat-luxe',
+    name: 'Sadat Luxe',
+    description: 'Premium cosmetics, fashion, and grooming services for the discerning client.',
+    icon: '💄',
+    color: 'bg-pink-500',
+    services: ['Cosmetics', 'Fashion', 'Grooming', 'Beauty Treatments'],
+    stats: {
+      totalOrders: 1247,
+      totalRevenue: 456789,
+      activeUsers: 892,
+    },
+  },
+  {
+    id: 'sadat-connect',
+    name: 'Sadat Connect',
+    description: 'Mobile credit and internet top-ups with instant delivery.',
+    icon: '📱',
+    color: 'bg-blue-500',
+    services: ['Mobile Credit', 'Internet Top-ups', 'Data Bundles', 'Bill Payments'],
+    stats: {
+      totalOrders: 5678,
+      totalRevenue: 234567,
+      activeUsers: 3456,
+    },
+  },
+  {
+    id: 'sadat-capital',
+    name: 'Sadat Capital',
+    description: 'Crypto trading, P2P transfers, remittances, and micro-loans.',
+    icon: '💰',
+    color: 'bg-green-500',
+    services: ['Crypto Trading', 'P2P Transfers', 'Remittances', 'Micro-loans'],
+    stats: {
+      totalOrders: 2345,
+      totalRevenue: 1234567,
+      activeUsers: 1234,
+    },
+  },
+  {
+    id: 'sadat-estates',
+    name: 'Sadat Estates',
+    description: 'Real estate listings, buying, selling, and investment opportunities.',
+    icon: '🏠',
+    color: 'bg-purple-500',
+    services: ['Property Listings', 'Buying & Selling', 'Investments', 'Property Management'],
+    stats: {
+      totalOrders: 456,
+      totalRevenue: 3456789,
+      activeUsers: 234,
+    },
+  },
+  {
+    id: 'sadat-energy',
+    name: 'Sadat Energy',
+    description: 'Fuel products, import/export, and bulk delivery services.',
+    icon: '⛽',
+    color: 'bg-yellow-500',
+    services: ['Fuel Products', 'Import/Export', 'Bulk Delivery', 'Energy Solutions'],
+    stats: {
+      totalOrders: 789,
+      totalRevenue: 5678901,
+      activeUsers: 567,
+    },
+  },
+  {
+    id: 'sadat-transport',
+    name: 'Sadat Transport',
+    description: 'Cargo and passenger transport with booking services.',
+    icon: '🚚',
+    color: 'bg-orange-500',
+    services: ['Cargo Transport', 'Passenger Transport', 'Booking Services', 'Logistics'],
+    stats: {
+      totalOrders: 1234,
+      totalRevenue: 789012,
+      activeUsers: 678,
+    },
+  },
+  {
+    id: 'sadat-investments',
+    name: 'Sadat Investments',
+    description: 'Stock trading, crypto investments, startup funding, and micro-investments.',
+    icon: '📈',
+    color: 'bg-indigo-500',
+    services: ['Stock Trading', 'Crypto Investments', 'Startup Funding', 'Micro-investments'],
+    stats: {
+      totalOrders: 890,
+      totalRevenue: 2345678,
+      activeUsers: 445,
+    },
+  },
+  {
+    id: 'government-contracts',
+    name: 'Government Contracts',
+    description: 'Specialized services tailored for government tenders and contracts.',
+    icon: '🏛️',
+    color: 'bg-red-500',
+    services: ['Government Tenders', 'Contract Management', 'Compliance Services', 'Bid Support'],
+    stats: {
+      totalOrders: 123,
+      totalRevenue: 4567890,
+      activeUsers: 89,
+    },
+  },
+];
