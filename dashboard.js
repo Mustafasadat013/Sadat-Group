@@ -5,10 +5,6 @@ class Dashboard {
         this.currentDate = document.getElementById('currentDate');
         this.userName = document.getElementById('userName');
         this.userRole = document.getElementById('userRole');
-        this.userProfile = document.getElementById('userProfile');
-        this.userDropdown = document.getElementById('userDropdown');
-        this.notificationsPanel = document.getElementById('notificationsPanel');
-        this.notificationsBtn = document.querySelector('.notifications');
         
         this.init();
     }
@@ -48,23 +44,25 @@ class Dashboard {
         const updateClock = () => {
             const now = new Date();
             
-            // Update time
+            // Update time (hidden in new design)
             const timeString = now.toLocaleTimeString('en-US', {
                 hour12: false,
                 hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit'
             });
-            this.currentTime.textContent = timeString;
+            if (this.currentTime) {
+                this.currentTime.textContent = timeString;
+            }
             
-            // Update date
+            // Update date in MM/DD format for new design
             const dateString = now.toLocaleDateString('en-US', {
-                weekday: 'short',
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric'
+                month: '2-digit',
+                day: '2-digit'
             });
-            this.currentDate.textContent = dateString;
+            if (this.currentDate) {
+                this.currentDate.textContent = dateString;
+            }
         };
         
         updateClock();
@@ -72,8 +70,10 @@ class Dashboard {
     }
 
     initUserInfo() {
-        if (this.currentUser) {
+        if (this.currentUser && this.userName) {
             this.userName.textContent = this.currentUser.username;
+        }
+        if (this.currentUser && this.userRole) {
             this.userRole.textContent = this.currentUser.role;
         }
     }
@@ -299,42 +299,38 @@ class Dashboard {
     }
 
     initEventListeners() {
-        // User profile dropdown
-        this.userProfile.addEventListener('click', () => {
-            this.toggleUserDropdown();
+        // Add click handlers for business unit cards
+        const businessCards = document.querySelectorAll('.appointment-item[onclick]');
+        businessCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('.appointment-item')) {
+                    // Add visual feedback
+                    card.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        card.style.transform = '';
+                    }, 150);
+                }
+            });
         });
 
-        // Notifications
-        this.notificationsBtn.addEventListener('click', () => {
-            this.toggleNotifications();
-        });
-
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!this.userProfile.contains(e.target) && !this.userDropdown.contains(e.target)) {
-                this.userDropdown.classList.remove('show');
-            }
+        // Add hover effects for cards
+        const cards = document.querySelectorAll('.card, .appointment-item');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-3px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
         });
 
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                this.closeAllPanels();
+                // Close any open modals or panels
             }
         });
-    }
-
-    toggleUserDropdown() {
-        this.userDropdown.classList.toggle('show');
-    }
-
-    toggleNotifications() {
-        this.notificationsPanel.classList.toggle('show');
-    }
-
-    closeAllPanels() {
-        this.userDropdown.classList.remove('show');
-        this.notificationsPanel.classList.remove('show');
     }
 
     async loadDashboardData() {
@@ -439,17 +435,43 @@ class Dashboard {
     }
 
     updateBusinessTiles(data) {
+        // Update business card data in new structure
         Object.keys(data).forEach(business => {
-            const tile = document.querySelector(`[data-business="${business}"]`);
-            if (tile) {
-                const stats = tile.querySelectorAll('.stat-value');
+            const card = document.querySelector(`.appointment-item[onclick*="${business}"]`);
+            if (card) {
+                const paragraphs = card.querySelectorAll('p');
                 const businessData = data[business];
                 
-                Object.values(businessData).forEach((value, index) => {
-                    if (stats[index]) {
-                        stats[index].textContent = value;
+                // Update the content based on business type
+                if (business === 'luxe' && paragraphs.length >= 2) {
+                    if (businessData.revenue) {
+                        paragraphs[0].innerHTML = `<i class="fas fa-dollar-sign"></i> Revenue: ${businessData.revenue}`;
                     }
-                });
+                    if (businessData.orders) {
+                        paragraphs[1].innerHTML = `<i class="fas fa-shopping-cart"></i> Orders: ${businessData.orders}`;
+                    }
+                } else if (business === 'investments' && paragraphs.length >= 2) {
+                    if (businessData.portfolio) {
+                        paragraphs[0].innerHTML = `<i class="fas fa-chart-line"></i> Portfolio: ${businessData.portfolio}`;
+                    }
+                    if (businessData.investors) {
+                        paragraphs[1].innerHTML = `<i class="fas fa-users"></i> Investors: ${businessData.investors}`;
+                    }
+                } else if (business === 'properties' && paragraphs.length >= 2) {
+                    if (businessData.properties) {
+                        paragraphs[0].innerHTML = `<i class="fas fa-home"></i> Properties: ${businessData.properties}`;
+                    }
+                    if (businessData.value) {
+                        paragraphs[1].innerHTML = `<i class="fas fa-dollar-sign"></i> Value: ${businessData.value}`;
+                    }
+                } else if (business === 'technology' && paragraphs.length >= 2) {
+                    if (businessData.projects) {
+                        paragraphs[0].innerHTML = `<i class="fas fa-project-diagram"></i> Projects: ${businessData.projects}`;
+                    }
+                    if (businessData.clients) {
+                        paragraphs[1].innerHTML = `<i class="fas fa-users"></i> Clients: ${businessData.clients}`;
+                    }
+                }
             }
         });
     }
@@ -479,62 +501,81 @@ document.addEventListener('DOMContentLoaded', () => {
     new Dashboard();
 });
 
-// Add some additional interactive features
+// Add some additional interactive features for new design
 document.addEventListener('DOMContentLoaded', () => {
-    // Add hover effects to business tiles
-    const businessTiles = document.querySelectorAll('.business-tile');
-    businessTiles.forEach(tile => {
-        tile.addEventListener('mouseenter', () => {
-            tile.style.transform = 'translateY(-8px) scale(1.02)';
+    // Add hover effects to cards
+    const cards = document.querySelectorAll('.card, .appointment-item');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-3px)';
         });
         
-        tile.addEventListener('mouseleave', () => {
-            tile.style.transform = 'translateY(0) scale(1)';
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
         });
     });
 
-    // Add click effects to widgets
-    const widgets = document.querySelectorAll('.widget');
-    widgets.forEach(widget => {
-        widget.addEventListener('click', () => {
-            widget.style.transform = 'scale(0.98)';
+    // Add click effects to overview items
+    const overviewItems = document.querySelectorAll('.overview-item');
+    overviewItems.forEach(item => {
+        item.addEventListener('click', () => {
+            item.style.transform = 'scale(0.98)';
             setTimeout(() => {
-                widget.style.transform = 'translateY(-4px)';
+                item.style.transform = 'translateY(-3px)';
             }, 150);
         });
     });
 
-    // Add smooth scrolling for activity items
-    const activityItems = document.querySelectorAll('.activity-item');
-    activityItems.forEach(item => {
+    // Add smooth interactions for appointment items
+    const appointmentItems = document.querySelectorAll('.appointment-item');
+    appointmentItems.forEach(item => {
         item.addEventListener('click', () => {
             // Add click effect
-            item.style.background = 'rgba(0, 120, 212, 0.1)';
+            item.style.background = '#e1ecfb';
             setTimeout(() => {
-                item.style.background = 'transparent';
+                item.style.background = '#f8fbff';
             }, 300);
         });
     });
 });
 
-// Add real-time updates simulation
+// Add real-time updates simulation for new design
 setInterval(() => {
-    // Simulate real-time data updates
-    const widgets = document.querySelectorAll('.widget-value');
-    widgets.forEach(widget => {
-        const currentValue = widget.textContent;
+    // Simulate real-time data updates for overview items
+    const overviewValues = document.querySelectorAll('.overview-item .value');
+    overviewValues.forEach(value => {
+        const currentValue = value.textContent;
         const isCurrency = currentValue.includes('$');
         
         if (isCurrency) {
             const number = parseInt(currentValue.replace(/[^0-9]/g, ''));
             const change = Math.floor(Math.random() * 1000) - 500;
             const newValue = Math.max(0, number + change);
-            widget.textContent = '$' + newValue.toLocaleString();
+            value.textContent = '$' + newValue.toLocaleString();
         } else {
             const number = parseInt(currentValue.replace(/[^0-9]/g, ''));
             const change = Math.floor(Math.random() * 10) - 5;
             const newValue = Math.max(0, number + change);
-            widget.textContent = newValue.toLocaleString();
+            value.textContent = newValue.toLocaleString();
+        }
+    });
+
+    // Update stats values
+    const statsValues = document.querySelectorAll('.stats-value');
+    statsValues.forEach(value => {
+        const currentValue = value.textContent;
+        const isCurrency = currentValue.includes('$');
+        
+        if (isCurrency) {
+            const number = parseInt(currentValue.replace(/[^0-9]/g, ''));
+            const change = Math.floor(Math.random() * 1000) - 500;
+            const newValue = Math.max(0, number + change);
+            value.textContent = '$' + newValue.toLocaleString();
+        } else {
+            const number = parseInt(currentValue.replace(/[^0-9]/g, ''));
+            const change = Math.floor(Math.random() * 10) - 5;
+            const newValue = Math.max(0, number + change);
+            value.textContent = newValue.toLocaleString();
         }
     });
 }, 30000); // Update every 30 seconds

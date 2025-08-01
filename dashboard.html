@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sadat Group - Dashboard</title>
+    <title>Sadat Group - Business Dashboard</title>
     <link rel="stylesheet" href="dashboard-styles.css">
     <link rel="stylesheet" href="enhanced-styles.css">
     <link rel="stylesheet" href="ai-styles.css">
@@ -11,362 +11,172 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="dashboard-container">
-        <!-- Header -->
-        <header class="dashboard-header">
-            <div class="header-left">
-                <div class="logo">
-                    <i class="fas fa-building"></i>
-                    <span>Sadat Group</span>
-                </div>
-                <div class="breadcrumb">
-                    <span>Dashboard</span>
+    <div class="container">
+        <header>
+            <div class="logo">Sadat Group</div>
+            <div class="date" id="currentDate">Loading...</div>
+        </header>
+        
+        <hr>
+        
+        <section class="welcome-section">
+            <h2>Business Management</h2>
+            <h3>Welcome back, <span id="userName">Sayed</span></h3>
+            <p>Track, manage and forecast your business performance across all units.</p>
+        </section>
+        
+        <div class="dashboard-grid">
+            <!-- Overview Card -->
+            <div class="card overview-card">
+                <div class="card-header">Business Overview</div>
+                <div class="overview-grid">
+                    <div class="overview-item">
+                        <div class="label">Total Revenue</div>
+                        <div class="value">$2,847,392</div>
+                        <div class="percentage">+12.5%</div>
+                    </div>
+                    <div class="overview-item">
+                        <div class="label">Today's Sales</div>
+                        <div class="value">$45,678</div>
+                        <div class="percentage">+8.2%</div>
+                    </div>
+                    <div class="overview-item">
+                        <div class="label">Active Clients</div>
+                        <div class="value">1,247</div>
+                        <div class="percentage">+3.1%</div>
+                    </div>
+                    <div class="overview-item">
+                        <div class="label">Pending Tasks</div>
+                        <div class="value">23</div>
+                        <div class="percentage">+5</div>
+                    </div>
                 </div>
             </div>
             
-            <div class="header-right">
-                <div class="header-widgets">
-                    <div class="time-widget">
-                        <i class="fas fa-clock"></i>
-                        <span id="currentTime">00:00:00</span>
-                    </div>
-                    <div class="date-widget">
-                        <i class="fas fa-calendar"></i>
-                        <span id="currentDate">Loading...</span>
-                    </div>
+            <!-- Statistics Card -->
+            <div class="card stats-card">
+                <div class="card-header">Business Statistics</div>
+                <div class="stats-item">
+                    <div class="stats-label">Total Revenue</div>
+                    <div class="stats-value">$2,847,392 <span class="stats-percentage">+12.5%</span></div>
                 </div>
-                
-                <div class="user-menu">
-                    <div class="notifications">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge">3</span>
-                    </div>
-                    <div class="user-profile" id="userProfile">
-                        <img src="https://via.placeholder.com/40x40/0078d4/ffffff?text=U" alt="User" class="user-avatar">
-                        <div class="user-info">
-                            <span class="user-name" id="userName">Loading...</span>
-                            <span class="user-role" id="userRole">Loading...</span>
-                        </div>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
+                <div class="stats-item">
+                    <div class="stats-label">Monthly Average</div>
+                    <div class="stats-value">$237,283</div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-label">Active Clients</div>
+                    <div class="stats-value">1,247 <span class="stats-percentage">+3.1%</span></div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-label">Business Units</div>
+                    <div class="stats-value">4</div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-label">Pending Tasks</div>
+                    <div class="stats-value">23</div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-label">New Orders Today</div>
+                    <div class="stats-value">156</div>
                 </div>
             </div>
-        </header>
-
-        <!-- Main Content -->
-        <main class="dashboard-main">
-            <!-- Overview Widgets -->
-            <section class="overview-section">
-                <h2>Business Overview</h2>
-                <div class="widgets-grid">
-                    <div class="widget widget-revenue" id="revenueWidget">
-                        <div class="widget-icon">
-                            <i class="fas fa-dollar-sign"></i>
-                        </div>
-                        <div class="widget-content">
-                            <h3>Total Revenue</h3>
-                            <p class="widget-value">$2,847,392</p>
-                            <span class="widget-change positive">+12.5%</span>
-                        </div>
-                    </div>
-                    
-                    <div class="widget widget-sales" id="salesWidget">
-                        <div class="widget-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="widget-content">
-                            <h3>Today's Sales</h3>
-                            <p class="widget-value">$45,678</p>
-                            <span class="widget-change positive">+8.2%</span>
-                        </div>
-                    </div>
-                    
-                    <div class="widget widget-clients" id="clientsWidget">
-                        <div class="widget-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="widget-content">
-                            <h3>Active Clients</h3>
-                            <p class="widget-value">1,247</p>
-                            <span class="widget-change positive">+3.1%</span>
-                        </div>
-                    </div>
-                    
-                    <div class="widget widget-tasks" id="tasksWidget">
-                        <div class="widget-icon">
-                            <i class="fas fa-tasks"></i>
-                        </div>
-                        <div class="widget-content">
-                            <h3>Pending Tasks</h3>
-                            <p class="widget-value">23</p>
-                            <span class="widget-change negative">+5</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- AI Insights Dashboard -->
-            <section class="ai-insights">
-                <h3><i class="fas fa-brain"></i> AI-Powered Insights</h3>
-                <div class="insights-grid" id="aiInsights">
-                    <!-- AI insights will be populated here -->
-                </div>
-            </section>
-
-            <!-- AI Recommendations -->
-            <section class="ai-recommendations">
-                <div class="recommendations-header">
-                    <h3>AI Recommendations</h3>
-                    <div class="recommendation-filters">
-                        <button class="recommendation-filter active" data-filter="all">All</button>
-                        <button class="recommendation-filter" data-filter="business">Business</button>
-                        <button class="recommendation-filter" data-filter="operational">Operational</button>
-                        <button class="recommendation-filter" data-filter="financial">Financial</button>
-                        <button class="recommendation-filter" data-filter="strategic">Strategic</button>
-                    </div>
-                </div>
-                <div class="recommendations-grid" id="aiRecommendations">
-                    <!-- AI recommendations will be populated here -->
-                </div>
-            </section>
-
-            <!-- Business Tiles -->
-            <section class="business-section">
-                <h2>Business Units</h2>
-                <div class="business-grid">
-                    <div class="business-tile" data-business="luxe">
-                        <div class="tile-header">
-                            <div class="tile-icon">
-                                <i class="fas fa-gem"></i>
-                            </div>
-                            <div class="tile-status online"></div>
-                        </div>
-                        <div class="tile-content">
-                            <h3>Sadat Luxe</h3>
-                            <p>Luxury Retail & Fashion</p>
-                            <div class="tile-stats">
-                                <div class="stat">
-                                    <span class="stat-label">Revenue</span>
-                                    <span class="stat-value">$1,234,567</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-label">Orders</span>
-                                    <span class="stat-value">156</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tile-actions">
-                            <button class="btn-primary" onclick="openBusiness('luxe')">
-                                <i class="fas fa-external-link-alt"></i>
-                                Open Dashboard
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="business-tile" data-business="investments">
-                        <div class="tile-header">
-                            <div class="tile-icon">
-                                <i class="fas fa-chart-bar"></i>
-                            </div>
-                            <div class="tile-status online"></div>
-                        </div>
-                        <div class="tile-content">
-                            <h3>Sadat Investments</h3>
-                            <p>Financial Services & Trading</p>
-                            <div class="tile-stats">
-                                <div class="stat">
-                                    <span class="stat-label">Portfolio</span>
-                                    <span class="stat-value">$5,678,901</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-label">Investors</span>
-                                    <span class="stat-value">89</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tile-actions">
-                            <button class="btn-primary" onclick="openBusiness('investments')">
-                                <i class="fas fa-external-link-alt"></i>
-                                Open Dashboard
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="business-tile" data-business="properties">
-                        <div class="tile-header">
-                            <div class="tile-icon">
-                                <i class="fas fa-building"></i>
-                            </div>
-                            <div class="tile-status online"></div>
-                        </div>
-                        <div class="tile-content">
-                            <h3>Sadat Properties</h3>
-                            <p>Real Estate & Development</p>
-                            <div class="tile-stats">
-                                <div class="stat">
-                                    <span class="stat-label">Properties</span>
-                                    <span class="stat-value">24</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-label">Value</span>
-                                    <span class="stat-value">$12,345,678</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tile-actions">
-                            <button class="btn-primary" onclick="openBusiness('properties')">
-                                <i class="fas fa-external-link-alt"></i>
-                                Open Dashboard
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="business-tile" data-business="technology">
-                        <div class="tile-header">
-                            <div class="tile-icon">
-                                <i class="fas fa-microchip"></i>
-                            </div>
-                            <div class="tile-status online"></div>
-                        </div>
-                        <div class="tile-content">
-                            <h3>Sadat Technology</h3>
-                            <p>Software & IT Solutions</p>
-                            <div class="tile-stats">
-                                <div class="stat">
-                                    <span class="stat-label">Projects</span>
-                                    <span class="stat-value">12</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-label">Clients</span>
-                                    <span class="stat-value">45</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tile-actions">
-                            <button class="btn-primary" onclick="openBusiness('technology')">
-                                <i class="fas fa-external-link-alt"></i>
-                                Open Dashboard
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Recent Activity -->
-            <section class="activity-section">
-                <h2>Recent Activity</h2>
-                <div class="activity-list">
-                    <div class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <div class="activity-content">
-                            <h4>New order received</h4>
-                            <p>Order #LUX-2024-001 from Sadat Luxe</p>
-                            <span class="activity-time">2 minutes ago</span>
-                        </div>
-                    </div>
-                    
-                    <div class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="activity-content">
-                            <h4>Investment completed</h4>
-                            <p>Portfolio update in Sadat Investments</p>
-                            <span class="activity-time">15 minutes ago</span>
-                        </div>
-                    </div>
-                    
-                    <div class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-key"></i>
-                        </div>
-                        <div class="activity-content">
-                            <h4>Property sold</h4>
-                            <p>Commercial property in downtown area</p>
-                            <span class="activity-time">1 hour ago</span>
-                        </div>
-                    </div>
-                    
-                    <div class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="activity-content">
-                            <h4>Project milestone</h4>
-                            <p>Software development project completed</p>
-                            <span class="activity-time">3 hours ago</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- User Menu Dropdown -->
-        <div class="user-dropdown" id="userDropdown">
-            <div class="dropdown-item">
-                <i class="fas fa-user"></i>
-                <span>Profile</span>
-            </div>
-            <div class="dropdown-item">
-                <i class="fas fa-cog"></i>
-                <span>Settings</span>
-            </div>
-            <div class="dropdown-divider"></div>
-            <div class="dropdown-item" onclick="window.location.href='advanced-features.html'">
-                <i class="fas fa-rocket"></i>
-                <span>Advanced Features Demo</span>
-            </div>
-            <div class="dropdown-item" onclick="logout()">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Logout</span>
+            
+            <!-- Business Units Card -->
+            <div class="card blood-cancer-card">
+                <div class="card-header">Business Units</div>
+                <div class="blood-value">4</div>
+                <div class="blood-info">Sadat Luxe</div>
+                <div class="blood-info">Sadat Investments</div>
+                <div class="blood-info">Sadat Properties</div>
+                <div class="blood-info">Sadat Technology</div>
             </div>
         </div>
 
-        <!-- Notifications Panel -->
-        <div class="notifications-panel" id="notificationsPanel">
-            <div class="panel-header">
-                <h3>Notifications</h3>
-                <button class="panel-close" onclick="toggleNotifications()">
-                    <i class="fas fa-times"></i>
-                </button>
+
+        <!-- AI Insights Dashboard -->
+        <div class="appointments-card">
+            <div class="appointments-header">
+                <div>
+                    <h3 class="section-title"><i class="fas fa-brain"></i> AI-Powered Insights</h3>
+                    <p class="section-subtitle">Intelligent recommendations for your business growth.</p>
+                </div>
             </div>
-            <div class="notifications-list">
-                <div class="notification-item">
-                    <div class="notification-icon">
-                        <i class="fas fa-exclamation-circle"></i>
-                    </div>
-                    <div class="notification-content">
-                        <h4>System Update</h4>
-                        <p>New features available in dashboard</p>
-                        <span class="notification-time">5 minutes ago</span>
-                    </div>
+            
+            <div class="appointment-list" id="aiInsights">
+                <!-- AI insights will be populated here -->
+            </div>
+        </div>
+
+        <!-- Business Units -->
+        <div class="appointments-card">
+            <div class="appointments-header">
+                <div>
+                    <h3 class="section-title">Business Units</h3>
+                    <p class="section-subtitle">Manage and monitor all your business operations.</p>
                 </div>
-                
-                <div class="notification-item">
-                    <div class="notification-icon">
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <div class="notification-content">
-                        <h4>Task Reminder</h4>
-                        <p>Monthly report due tomorrow</p>
-                        <span class="notification-time">1 hour ago</span>
-                    </div>
+            </div>
+            
+            <div class="appointment-list">
+                <div class="appointment-item" onclick="openBusiness('luxe')">
+                    <h4><i class="fas fa-gem"></i> Sadat Luxe</h4>
+                    <p><i class="fas fa-dollar-sign"></i> Revenue: $1,234,567</p>
+                    <p><i class="fas fa-shopping-cart"></i> Orders: 156</p>
                 </div>
-                
-                <div class="notification-item">
-                    <div class="notification-icon">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <div class="notification-content">
-                        <h4>Backup Complete</h4>
-                        <p>System backup completed successfully</p>
-                        <span class="notification-time">2 hours ago</span>
-                    </div>
+                <div class="appointment-item" onclick="openBusiness('investments')">
+                    <h4><i class="fas fa-chart-line"></i> Sadat Investments</h4>
+                    <p><i class="fas fa-portfolio"></i> Portfolio: $5,678,901</p>
+                    <p><i class="fas fa-users"></i> Investors: 89</p>
+                </div>
+                <div class="appointment-item" onclick="openBusiness('properties')">
+                    <h4><i class="fas fa-building"></i> Sadat Properties</h4>
+                    <p><i class="fas fa-home"></i> Properties: 24</p>
+                    <p><i class="fas fa-dollar-sign"></i> Value: $12,345,678</p>
+                </div>
+                <div class="appointment-item" onclick="openBusiness('technology')">
+                    <h4><i class="fas fa-microchip"></i> Sadat Technology</h4>
+                    <p><i class="fas fa-project-diagram"></i> Projects: 12</p>
+                    <p><i class="fas fa-users"></i> Clients: 45</p>
                 </div>
             </div>
         </div>
+
+        <!-- Recent Activity -->
+        <div class="appointments-card">
+            <div class="appointments-header">
+                <div>
+                    <h3 class="section-title">Recent Activity</h3>
+                    <p class="section-subtitle">Latest updates from your business operations.</p>
+                </div>
+            </div>
+            
+            <div class="appointment-list">
+                <div class="appointment-item">
+                    <h4><i class="fas fa-shopping-cart"></i> New order received</h4>
+                    <p><i class="fas fa-info-circle"></i> Order #LUX-2024-001 from Sadat Luxe</p>
+                    <p><i class="fas fa-clock"></i> 2 minutes ago</p>
+                </div>
+                <div class="appointment-item">
+                    <h4><i class="fas fa-chart-line"></i> Investment completed</h4>
+                    <p><i class="fas fa-info-circle"></i> Portfolio update in Sadat Investments</p>
+                    <p><i class="fas fa-clock"></i> 15 minutes ago</p>
+                </div>
+                <div class="appointment-item">
+                    <h4><i class="fas fa-key"></i> Property sold</h4>
+                    <p><i class="fas fa-info-circle"></i> Commercial property in downtown area</p>
+                    <p><i class="fas fa-clock"></i> 1 hour ago</p>
+                </div>
+                <div class="appointment-item">
+                    <h4><i class="fas fa-code"></i> Project milestone</h4>
+                    <p><i class="fas fa-info-circle"></i> Software development project completed</p>
+                    <p><i class="fas fa-clock"></i> 3 hours ago</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Sadat Group Business Management System</p>
+        </footer>
     </div>
 
     <script src="auth.js"></script>
