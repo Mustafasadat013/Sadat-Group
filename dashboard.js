@@ -22,25 +22,26 @@ class Dashboard {
         this.initUserInfo();
         this.initEventListeners();
         
+        // Initialize analytics
+        this.initAnalytics();
+        
         // Load dashboard data
         this.loadDashboardData();
     }
 
     checkAuth() {
-        const userSession = localStorage.getItem('sadatGroupUser');
-        if (!userSession) {
+        // Use enhanced authentication system
+        const session = auth.getCurrentSession();
+        if (!session) {
             window.location.href = 'login.html';
             return;
         }
 
-        try {
-            const user = JSON.parse(userSession);
-            this.currentUser = user;
-        } catch (error) {
-            console.error('Invalid user session');
-            localStorage.removeItem('sadatGroupUser');
-            window.location.href = 'login.html';
-        }
+        this.currentUser = {
+            username: session.username,
+            role: session.role,
+            permissions: session.permissions
+        };
     }
 
     initClock() {
@@ -74,6 +75,13 @@ class Dashboard {
         if (this.currentUser) {
             this.userName.textContent = this.currentUser.username;
             this.userRole.textContent = this.currentUser.role;
+        }
+    }
+
+    initAnalytics() {
+        // Initialize analytics system if available
+        if (typeof analytics !== 'undefined') {
+            this.analytics = analytics;
         }
     }
 
@@ -244,12 +252,8 @@ function openBusiness(business) {
 }
 
 function logout() {
-    // Clear user session
-    localStorage.removeItem('sadatGroupUser');
-    localStorage.removeItem('currentBusiness');
-    
-    // Redirect to login
-    window.location.href = 'login.html';
+    // Use enhanced authentication system
+    auth.logout();
 }
 
 function toggleNotifications() {

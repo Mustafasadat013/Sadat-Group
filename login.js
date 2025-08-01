@@ -12,6 +12,7 @@ class LoginPage {
         this.closeModalBtn = document.getElementById('closeModal');
         this.closeModalBtn2 = document.getElementById('closeModalBtn');
         this.messageContainer = document.getElementById('messageContainer');
+        this.demoCredentialsModal = document.getElementById('demoCredentialsModal');
         
         this.init();
     }
@@ -31,10 +32,18 @@ class LoginPage {
             }
         });
 
+        // Demo credentials modal
+        this.demoCredentialsModal.addEventListener('click', (e) => {
+            if (e.target === this.demoCredentialsModal) {
+                this.hideDemoCredentialsModal();
+            }
+        });
+
         // Add keyboard shortcuts
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 this.hideModal();
+                this.hideDemoCredentialsModal();
             }
         });
 
@@ -43,6 +52,9 @@ class LoginPage {
 
         // Add input validation
         this.addInputValidation();
+        
+        // Setup accessibility
+        this.setupAccessibility();
     }
 
     addInputValidation() {
@@ -140,20 +152,9 @@ class LoginPage {
         const username = this.usernameInput.value.trim();
         const password = this.passwordInput.value;
 
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 1500));
-
-        // Demo credentials (in real app, this would be server-side validation)
-        const validCredentials = {
-            'admin': 'admin123',
-            'sadat': 'sadat2024',
-            'manager': 'manager123',
-            'user': 'user123'
-        };
-
-        if (validCredentials[username] && validCredentials[username] === password) {
-            // Store user session
-            this.storeUserSession(username);
+        try {
+            // Use the enhanced authentication system
+            await auth.login(username, password);
             
             // Show success message
             this.showMessage('Login successful! Redirecting to dashboard...', 'success');
@@ -162,8 +163,8 @@ class LoginPage {
             setTimeout(() => {
                 window.location.href = 'dashboard.html';
             }, 1500);
-        } else {
-            throw new Error('Invalid username or password. Please try again.');
+        } catch (error) {
+            throw new Error(error.message || 'Invalid username or password. Please try again.');
         }
     }
 
@@ -218,6 +219,29 @@ class LoginPage {
         this.modal.classList.remove('show');
     }
 
+    showDemoCredentialsModal() {
+        this.demoCredentialsModal.classList.add('show');
+    }
+
+    hideDemoCredentialsModal() {
+        this.demoCredentialsModal.classList.remove('show');
+    }
+
+    setupAccessibility() {
+        // Add ARIA labels
+        this.usernameInput.setAttribute('aria-label', 'Username or email address');
+        this.passwordInput.setAttribute('aria-label', 'Password');
+        this.passwordToggle.setAttribute('aria-label', 'Toggle password visibility');
+        
+        // Add keyboard navigation
+        this.form.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.target.tagName !== 'BUTTON') {
+                e.preventDefault();
+                this.handleLogin(e);
+            }
+        });
+    }
+
     showMessage(message, type = 'info') {
         const messageElement = document.createElement('div');
         messageElement.className = `message ${type}`;
@@ -256,9 +280,24 @@ class LoginPage {
     }
 }
 
+// Global functions for modal handling
+function showDemoCredentials() {
+    const loginPage = window.loginPageInstance;
+    if (loginPage) {
+        loginPage.showDemoCredentialsModal();
+    }
+}
+
+function hideDemoCredentials() {
+    const loginPage = window.loginPageInstance;
+    if (loginPage) {
+        loginPage.hideDemoCredentialsModal();
+    }
+}
+
 // Initialize login page when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new LoginPage();
+    window.loginPageInstance = new LoginPage();
 });
 
 // Add some additional security features

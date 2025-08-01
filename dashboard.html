@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sadat Group - Dashboard</title>
     <link rel="stylesheet" href="dashboard-styles.css">
+    <link rel="stylesheet" href="enhanced-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -57,7 +58,7 @@
             <section class="overview-section">
                 <h2>Business Overview</h2>
                 <div class="widgets-grid">
-                    <div class="widget widget-revenue">
+                    <div class="widget widget-revenue" id="revenueWidget">
                         <div class="widget-icon">
                             <i class="fas fa-dollar-sign"></i>
                         </div>
@@ -68,7 +69,7 @@
                         </div>
                     </div>
                     
-                    <div class="widget widget-sales">
+                    <div class="widget widget-sales" id="salesWidget">
                         <div class="widget-icon">
                             <i class="fas fa-chart-line"></i>
                         </div>
@@ -79,7 +80,7 @@
                         </div>
                     </div>
                     
-                    <div class="widget widget-clients">
+                    <div class="widget widget-clients" id="clientsWidget">
                         <div class="widget-icon">
                             <i class="fas fa-users"></i>
                         </div>
@@ -90,7 +91,7 @@
                         </div>
                     </div>
                     
-                    <div class="widget widget-tasks">
+                    <div class="widget widget-tasks" id="tasksWidget">
                         <div class="widget-icon">
                             <i class="fas fa-tasks"></i>
                         </div>
@@ -338,6 +339,9 @@
         </div>
     </div>
 
+    <script src="auth.js"></script>
+    <script src="theme-system.js"></script>
+    <script src="analytics.js"></script>
     <script src="dashboard.js"></script>
 </body>
 </html>

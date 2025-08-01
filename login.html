@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sadat Group - Login</title>
     <link rel="stylesheet" href="login-styles.css">
+    <link rel="stylesheet" href="enhanced-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -70,7 +71,7 @@
                     <a href="#" class="forgot-password" id="forgotPassword">Forgot Password?</a>
                 </div>
 
-                <button type="submit" class="login-btn" id="loginBtn">
+                <button type="submit" class="login-btn btn btn-primary" id="loginBtn">
                     <i class="fas fa-sign-in-alt"></i>
                     <span>Sign In</span>
                     <div class="loading-spinner" id="loadingSpinner">
@@ -90,11 +91,16 @@
 
         <!-- Back to startup button -->
         <div class="back-button">
-            <button onclick="window.location.href='index.html'">
+            <button class="btn btn-secondary" onclick="window.location.href='index.html'">
                 <i class="fas fa-arrow-left"></i>
                 Back to Startup
             </button>
         </div>
+
+        <!-- Help Button -->
+        <button class="help-btn" onclick="showDemoCredentials()" aria-label="Show demo credentials">
+            <i class="fas fa-question-circle"></i>
+        </button>
     </div>
 
     <!-- Forgot Password Modal -->
@@ -119,6 +125,48 @@
         </div>
     </div>
 
+    <!-- Demo Credentials Modal -->
+    <div class="modal" id="demoCredentialsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Demo Credentials</h3>
+                <button class="modal-close" onclick="hideDemoCredentials()" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="demo-credentials">
+                    <div class="credential-group">
+                        <h4>Super Admin</h4>
+                        <p><strong>Username:</strong> admin</p>
+                        <p><strong>Password:</strong> admin123</p>
+                        <p><em>Full access to all features</em></p>
+                    </div>
+                    <div class="credential-group">
+                        <h4>Owner</h4>
+                        <p><strong>Username:</strong> sadat</p>
+                        <p><strong>Password:</strong> sadat2024</p>
+                        <p><em>Owner access with MFA</em></p>
+                    </div>
+                    <div class="credential-group">
+                        <h4>Manager</h4>
+                        <p><strong>Username:</strong> manager</p>
+                        <p><strong>Password:</strong> manager123</p>
+                        <p><em>Management access</em></p>
+                    </div>
+                    <div class="credential-group">
+                        <h4>User</h4>
+                        <p><strong>Username:</strong> user</p>
+                        <p><strong>Password:</strong> user123</p>
+                        <p><em>Basic access</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="theme-system.js"></script>
     <script src="login.js"></script>
 </body>
 </html>
